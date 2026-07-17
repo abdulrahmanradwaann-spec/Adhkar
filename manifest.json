@@ -1,0 +1,29 @@
+{
+  "name": "أذكاري - الأذكار الإسلامية",
+  "short_name": "أذكاري",
+  "description": "تطبيق متكامل للأذكار اليومية من القرآن الكريم والسنة النبوية الموثوقة",
+  "version": "3.0.0",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f8f9fa",
+  "theme_color": "#1a5f7a",
+  "orientation": "portrait",
+  "lang": "ar",
+  "dir": "rtl",
+  "categories": ["lifestyle", "education"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

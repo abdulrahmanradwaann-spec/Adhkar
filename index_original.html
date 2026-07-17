@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أذكاري - تطبيق الأذكار الإسلامي المتكامل</title>
     <meta name="description" content="تطبيق أذكاري - تطبيق متكامل للأذكار اليومية من القرآن الكريم والسنة النبوية الموثوقة.">
     <meta name="keywords" content="أذكار, أذكار يومية, أذكار الصباح, أذكار المساء, تطبيق إسلامي">
@@ -11,23 +11,14 @@
     <meta property="og:description" content="تطبيق متكامل للأذكار اليومية من القرآن الكريم والسنة النبوية الموثوقة">
     <meta property="og:type" content="website">
 
-    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
-    <link rel="apple-touch-icon" href="icons/icon-192.png">
-    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png">
-    <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.png">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#1a5f7a">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="أذكاري">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="أذكاري">
-    <meta name="msapplication-TileColor" content="#1a5f7a">
-    <meta name="msapplication-TileImage" content="icons/icon-192.png">
 </head>
 <body>
 
@@ -44,14 +35,8 @@
         <!-- ===== HEADER ===== -->
         <header class="header">
             <div class="logo-container">
-                <div class="logo-icon-wrap">
-                    <div class="logo-glow"></div>
-                    <i class="fas fa-book-quran logo-icon"></i>
-                </div>
-                <div class="logo-info">
-                    <h1 class="logo-text">أذكاري</h1>
-                    <span class="logo-subtitle">الأذكار اليومية</span>
-                </div>
+                <i class="fas fa-praying-hands logo-icon"></i>
+                <h1 class="logo-text">أذكاري</h1>
             </div>
             <div class="header-controls">
                 <span id="hijriDate" class="ml-3"></span>
@@ -80,110 +65,61 @@
             <!-- الصفحة الرئيسية -->
             <div id="homePage" class="page active">
 
-                <!-- قسم البطل الرئيسي -->
-                <section class="hero-section">
-                    <div class="hero-bg-shapes">
-                        <div class="hero-shape hero-shape-1"></div>
-                        <div class="hero-shape hero-shape-2"></div>
-                        <div class="hero-shape hero-shape-3"></div>
-                    </div>
-                    <div class="hero-content">
-
-                        <h2 class="hero-title">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</h2>
-                        <p class="hero-subtitle">تطبيق متكامل للأذكار اليومية من القرآن الكريم والسنة النبوية الموثوقة</p>
-                        <div class="hero-clock-section">
-                            <div class="clock-display">
-                                <div class="clock-time" id="clockTime">00:00</div>
-                                <div class="clock-period-col">
-                                    <div class="clock-seconds" id="clockSeconds">00</div>
-                                    <div class="clock-period" id="clockPeriod">صباحاً</div>
-                                </div>
-                            </div>
-                            <div class="clock-divider"></div>
-                            <div class="clock-dates">
-                                <div class="clock-day" id="clockDay"></div>
-                                <div class="clock-gregorian" id="clockGregorian"></div>
-                                <div class="clock-hijri" id="clockHijri"></div>
-                            </div>
-                        </div>
-                        <div class="hero-actions">
-                            <button class="hero-btn hero-btn-primary" id="dailyReminderBtn">
-                                <i class="fas fa-bell"></i> تذكير الأذكار اليومية
-                            </button>
-                            <button class="hero-btn hero-btn-secondary" id="randomZikrBtn">
-                                <i class="fas fa-dice"></i> ذكر عشوائي
-                            </button>
+                <section class="welcome-section slide-in-right">
+                    <div class="welcome-content">
+                        <h2 class="welcome-title">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</h2>
+                        <p class="welcome-subtitle">تطبيق أذكاري هو تطبيق متكامل للأذكار اليومية من القرآن الكريم والسنة النبوية الموثوقة</p>
+                        <div class="current-time mt-30">
+                            <i class="fas fa-clock"></i>
+                            <span id="currentTime"></span>
                         </div>
                     </div>
                 </section>
 
-                <!-- لوحة التحكم: التقدم + الإحصائيات -->
-                <div class="dashboard-panel">
-                    <div class="dashboard-row">
-                        <!-- شريط التقدم -->
-                        <div class="dashboard-progress">
-                            <div class="progress-label-row">
-                                <span class="progress-label"><i class="fas fa-chart-line"></i> تقدمك اليومي</span>
-                                <span class="progress-percent" id="progressPercent">0%</span>
-                            </div>
-                            <div class="progress-bar-track">
-                                <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
-                            </div>
-                        </div>
-                        <!-- الإحصائيات -->
-                        <div class="dashboard-stats">
-                            <div class="dash-stat">
-                                <div class="dash-stat-icon dash-stat-read"><i class="fas fa-check-circle"></i></div>
-                                <div class="dash-stat-info">
-                                    <span class="dash-stat-val" id="totalReadStat">0</span>
-                                    <span class="dash-stat-lbl">مقروء</span>
-                                </div>
-                            </div>
-                            <div class="dash-stat">
-                                <div class="dash-stat-icon dash-stat-fav"><i class="fas fa-heart"></i></div>
-                                <div class="dash-stat-info">
-                                    <span class="dash-stat-val" id="favoritesStat">0</span>
-                                    <span class="dash-stat-lbl">مفضلة</span>
-                                </div>
-                            </div>
-                            <div class="dash-stat">
-                                <div class="dash-stat-icon dash-stat-streak"><i class="fas fa-fire"></i></div>
-                                <div class="dash-stat-info">
-                                    <span class="dash-stat-val" id="streakStat">0</span>
-                                    <span class="dash-stat-lbl">أيام متتالية</span>
-                                </div>
-                            </div>
-                            <div class="dash-stat">
-                                <div class="dash-stat-icon dash-stat-complete"><i class="fas fa-trophy"></i></div>
-                                <div class="dash-stat-info">
-                                    <span class="dash-stat-val" id="completionStat">0%</span>
-                                    <span class="dash-stat-lbl">إنجاز</span>
-                                </div>
-                            </div>
-                        </div>
+                <!-- قناة تيليغرام -->
+                <div class="telegram-channel fade-in">
+                    <div class="telegram-content">
+                        <i class="fab fa-telegram telegram-icon"></i>
+                        <h3 class="telegram-title">انضم إلى قناتنا على تيليغرام</h3>
+                        <p class="telegram-desc">لتحميل تطبيق "أذكاري" عبر الهاتف، يُرجى الانضمام إلى القناة للحصول على رابط التحميل وآخر التحديثات.</p>
+                        <a href="https://t.me/io95c" target="_blank" class="telegram-btn">
+                            <i class="fab fa-telegram"></i> انضم إلى القناة الآن
+                        </a>
                     </div>
                 </div>
 
-                <!-- البحث + تيك توك -->
-                <div class="action-row">
-                    <div class="search-box-new">
-                        <i class="fas fa-search search-icon-new"></i>
-                        <input type="text" id="searchInput" class="search-input-new" placeholder="ابحث في الأذكار...">
+                <!-- التقدم -->
+                <section class="progress-section slide-in-left">
+                    <div class="progress-header">
+                        <h3 class="progress-title"><i class="fas fa-chart-line"></i> تقدمك اليومي في الأذكار</h3>
+                        <div class="progress-percent" id="progressPercent">0%</div>
                     </div>
-                    <a href="https://www.tiktok.com/@io99c" target="_blank" class="tiktok-pill">
-                        <svg class="tiktok-icon" viewBox="0 0 48 48" width="22" height="22"><path d="M41.3 20.7c-3.4 0-6.3-2-7.7-4.9V28a11.2 11.2 0 1 1-9.6-11.1v5.8a5.4 5.4 0 1 0 3.4 5V5h5.5a7.6 7.6 0 0 0 5.5 5.5A7.6 7.6 0 0 0 43.9 11V12a7.6 7.6 0 0 0-4.5 1.5 7.6 7.6 0 0 0 1.9 12.2" fill="white"/><path d="M33.6 15.8V28a7.6 7.6 0 1 1-5.5-7.3v5.5a2.2 2.2 0 1 0 1.8 2.2V11.5h3.7a3.8 3.8 0 0 0 3 3.5 3.8 3.8 0 0 0 2.3-1.2" fill="white" opacity="0.7"/></svg>
-                        <span>تابعنا</span>
-                    </a>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" style="width:0%"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <span id="completedStats">0 مكتمل</span>
+                        <span id="remainingStats">700 باقي</span>
+                        <span id="streakStats">سلسلة: 0 يوم</span>
+                    </div>
+                </section>
+
+                <!-- البحث -->
+                <div class="search-container fade-in">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" class="search-input" placeholder="ابحث في الأذكار...">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
                 </div>
 
                 <!-- الأقسام -->
                 <div class="sections-wrapper">
                     <div class="sections-header">
-                        <h2 class="sections-title">
-                            <span class="sections-title-icon"><i class="fas fa-th-large"></i></span>
-                            أقسام الأذكار
-                        </h2>
-
+                        <h2 class="sections-title"><i class="fas fa-th-large"></i> أقسام الأذكار</h2>
+                        <div class="sections-count">
+                            <i class="fas fa-book"></i>
+                            <span>10 أقسام | 700 ذكر</span>
+                        </div>
                     </div>
 
                     <div class="sections-categories" id="sectionsCategories">
@@ -195,28 +131,72 @@
                     </div>
 
                     <div class="sections-grid" id="sectionsGrid"></div>
+
+                    <div class="quick-sections">
+                        <h3 class="quick-sections-title"><i class="fas fa-bolt"></i> أقسام سريعة</h3>
+                        <div class="quick-sections-grid" id="quickSectionsGrid"></div>
+                    </div>
+
+                    <div class="stats-dashboard">
+                        <h3 class="stats-dashboard-title"><i class="fas fa-chart-pie"></i> إحصائيات متقدمة</h3>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                                <div class="stat-value" id="totalReadStat">0</div>
+                                <div class="stat-label">أذكار مقروءة</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-heart"></i></div>
+                                <div class="stat-value" id="favoritesStat">0</div>
+                                <div class="stat-label">مفضلة</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-fire"></i></div>
+                                <div class="stat-value" id="streakStat">0</div>
+                                <div class="stat-label">أيام متتالية</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+                                <div class="stat-value" id="completionStat">0%</div>
+                                <div class="stat-label">إنجاز</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- المميزات -->
-                <div class="features-compact">
-                    <div class="features-compact-grid">
-                        <div class="feature-pill">
-                            <div class="feature-pill-icon"><i class="fas fa-heart"></i></div>
-                            <span class="feature-pill-text">المفضلة</span>
+                <div class="features-section fade-in">
+                    <div class="features-header">
+                        <h3 class="features-title"><i class="fas fa-star"></i> مميزات التطبيق</h3>
+                    </div>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-heart"></i></div>
+                            <h4 class="feature-title">المفضلة</h4>
+                            <p class="feature-desc">احفظ أذكارك المفضلة للوصول السريع إليها</p>
                         </div>
-                        <div class="feature-pill">
-                            <div class="feature-pill-icon"><i class="fas fa-chart-bar"></i></div>
-                            <span class="feature-pill-text">تتبع التقدم</span>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-chart-bar"></i></div>
+                            <h4 class="feature-title">تتبع التقدم</h4>
+                            <p class="feature-desc">تابع تقدمك اليومي في قراءة الأذكار</p>
                         </div>
-                        <div class="feature-pill">
-                            <div class="feature-pill-icon"><i class="fas fa-moon"></i></div>
-                            <span class="feature-pill-text">الوضع الليلي</span>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-moon"></i></div>
+                            <h4 class="feature-title">الوضع الليلي</h4>
+                            <p class="feature-desc">وضع مظلم لحماية العين أثناء الليل</p>
                         </div>
-                        <div class="feature-pill">
-                            <div class="feature-pill-icon"><i class="fas fa-search"></i></div>
-                            <span class="feature-pill-text">بحث متقدم</span>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-search"></i></div>
+                            <h4 class="feature-title">بحث متقدم</h4>
+                            <p class="feature-desc">ابحث في الأذكار بسرعة وسهولة</p>
                         </div>
                     </div>
+                </div>
+
+                <!-- أزرار التنقل -->
+                <div class="navigation mt-40">
+                    <button class="nav-btn secondary" id="dailyReminderBtn"><i class="fas fa-bell"></i> تذكير الأذكار اليومية</button>
+                    <button class="nav-btn" id="randomZikrBtn"><i class="fas fa-random"></i> ذكر عشوائي</button>
                 </div>
             </div>
 
@@ -247,9 +227,9 @@
                             <div class="settings-value">700 ذكر في 10 أقسام</div>
                         </div>
                         <div class="settings-item">
-                            <div class="settings-label"><i class="fab fa-tiktok"></i><span>حسابنا على تيك توك</span></div>
+                            <div class="settings-label"><i class="fab fa-telegram"></i><span>قناة تيليغرام</span></div>
                             <div class="settings-value">
-                                <button class="settings-btn" id="joinTelegramBtn"><i class="fab fa-tiktok"></i> تابعنا</button>
+                                <button class="settings-btn" id="joinTelegramBtn"><i class="fab fa-telegram"></i> انضم إلى قناتنا</button>
                             </div>
                         </div>
                     </div>
@@ -302,36 +282,14 @@
                 <!-- المطور -->
                 <div class="developer-info slide-in-left">
                     <div class="developer-content">
-                        <div class="developer-profile">
-                            <div class="developer-avatar">
-                                <img src="images/developer.jpg" alt="عبدالرحمن رضوان" class="developer-photo">
-                                <div class="developer-avatar-ring"></div>
-                            </div>
-                            <h3 class="developer-name">عبدالرحمن رضوان</h3>
-                            <p class="developer-title">مطور تطبيق أذكاري</p>
-                        </div>
-                        <div class="developer-bio">
-                            <p class="developer-desc">تطبيق أذكاري هو تطبيق متكامل للأذكار اليومية من القرآن الكريم والسنة النبوية الموثوقة، تم تطويره بدقة وعناية لتقديم تجربة مستخدم فريدة ومفيدة للمسلمين حول العالم.</p>
-                        </div>
-                        <div class="developer-stats">
-                            <div class="developer-stat-item">
-                                <i class="fas fa-book"></i>
-                                <span>700 ذكر</span>
-                            </div>
-                            <div class="developer-stat-item">
-                                <i class="fas fa-folder"></i>
-                                <span>10 أقسام</span>
-                            </div>
-                            <div class="developer-stat-item">
-                                <i class="fas fa-code-branch"></i>
-                                <span>الإصدار 3.0</span>
-                            </div>
-                        </div>
+                        <h3 class="developer-name">عبدالرحمن رضوان</h3>
+                        <p class="developer-title">مطور تطبيق أذكاري</p>
+                        <p class="developer-desc">تطبيق أذكاري هو تطبيق متكامل للأذكار اليومية من القرآن الكريم والسنة النبوية الموثوقة، تم تطويره بدقة وعناية لتقديم تجربة مستخدم فريدة ومفيدة للمسلمين حول العالم.</p>
                         <div class="contact-info">
                             <button class="contact-btn" id="contactDeveloperBtn"><i class="fas fa-envelope"></i> تواصل مع المطور</button>
                             <button class="contact-btn" id="shareAppBtn"><i class="fas fa-share-alt"></i> مشاركة التطبيق</button>
                             <button class="contact-btn" id="rateAppBtn"><i class="fas fa-star"></i> تقييم التطبيق</button>
-                            <a href="https://www.tiktok.com/@io99c" target="_blank" class="contact-btn"><i class="fab fa-tiktok"></i> تابعنا</a>
+                            <a href="https://t.me/io95c" target="_blank" class="contact-btn"><i class="fab fa-telegram"></i> قناتنا على تيليغرام</a>
                         </div>
                     </div>
                 </div>
@@ -348,7 +306,7 @@
                 <div class="copyright">
                     <p>جميع الحقوق محفوظة &copy; 2026 - <span id="currentYear"></span> | عبدالرحمن رضوان</p>
                     <p class="mt-10">تطبيق أذكاري | الأذكار اليومية من القرآن والسنة</p>
-                    <p class="mt-10">تابعنا على <a href="https://www.tiktok.com/@io99c" target="_blank" style="color:#2d9cdb;text-decoration:none;">تيك توك</a></p>
+                    <p class="mt-10">تابع قناتنا على تيليغرام: <a href="https://t.me/io95c" target="_blank" style="color:#2d9cdb;text-decoration:none;">@io95c</a></p>
                 </div>
                 <div class="app-version">
                     <i class="fas fa-code"></i>
@@ -357,7 +315,7 @@
                 <div class="footer-links">
                     <a href="#" class="footer-link" id="privacyLink"><i class="fas fa-shield-alt"></i> خصوصية</a>
                     <a href="#" class="footer-link" id="termsLink"><i class="fas fa-file-contract"></i> شروط الاستخدام</a>
-                    <a href="https://www.tiktok.com/@io99c" target="_blank" class="footer-link"><i class="fab fa-tiktok"></i> تيك توك</a>
+                    <a href="https://t.me/io95c" target="_blank" class="footer-link"><i class="fab fa-telegram"></i> قناتنا</a>
                     <a href="#" class="footer-link" id="helpLink"><i class="fas fa-question-circle"></i> المساعدة</a>
                 </div>
             </div>
@@ -408,7 +366,7 @@
                 <p style="color:var(--text-light);margin-bottom:20px;text-align:center;">شارك التطبيق مع أحبابك لينالوا الأجر والثواب</p>
                 <div class="share-options">
                     <div class="share-option" id="shareWhatsApp"><i class="fab fa-whatsapp"></i><span class="share-name">واتساب</span></div>
-                    <div class="share-option" id="shareTelegram"><i class="fab fa-tiktok"></i><span class="share-name">تيك توك</span></div>
+                    <div class="share-option" id="shareTelegram"><i class="fab fa-telegram"></i><span class="share-name">تيليغرام</span></div>
                     <div class="share-option" id="shareTwitter"><i class="fab fa-twitter"></i><span class="share-name">تويتر</span></div>
                     <div class="share-option" id="shareFacebook"><i class="fab fa-facebook"></i><span class="share-name">فيسبوك</span></div>
                 </div>
@@ -431,40 +389,6 @@
                 <button class="install-btn" id="installLaterBtn">لاحقاً</button>
             </div>
             <button class="install-close" id="installCloseBtn"><i class="fas fa-times"></i></button>
-        </div>
-
-        <!-- نافذة التحديث -->
-        <div class="update-overlay" id="updateOverlay">
-            <div class="update-dialog">
-                <div class="update-header">
-                    <div class="update-icon-wrap">
-                        <div class="update-icon-pulse"></div>
-                        <div class="update-icon"><i class="fas fa-arrow-up"></i></div>
-                    </div>
-                    <h2 class="update-title">تحديث جديد متوفر</h2>
-                    <div class="update-versions">
-                        <span class="update-ver-new" id="updateVerNew">v0.0.0</span>
-                        <i class="fas fa-arrow-left update-arrow"></i>
-                        <span class="update-ver-old" id="updateVerOld">v0.0.0</span>
-                    </div>
-                </div>
-                <div class="update-body">
-                    <div class="update-date" id="updateDate"></div>
-                    <div class="update-changes" id="updateChanges"></div>
-                </div>
-                <div class="update-footer">
-                    <div id="updateProgressWrap" class="update-progress-wrap hidden">
-                        <div class="update-progress-bar">
-                            <div class="update-progress-fill" id="updateProgressFill"></div>
-                        </div>
-                        <span class="update-progress-text" id="updateProgressText">0%</span>
-                    </div>
-                    <div id="updateButtons" class="update-buttons">
-                        <button class="update-btn update-btn-primary" id="updateNowBtn"><i class="fas fa-download"></i> تحديث الآن</button>
-                        <button class="update-btn update-btn-secondary" id="updateLaterBtn">لاحقاً</button>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- الإشعارات -->
@@ -503,10 +427,5 @@
         }
         .notification-action:hover { background: #4abf87; transform: translateY(-1px); }
     </style>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./sw.js').catch(() => {});
-        }
-    </script>
 </body>
 </html>
