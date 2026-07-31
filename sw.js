@@ -1,10 +1,15 @@
-const CACHE_NAME = 'adhkar-v1';
+const CACHE_NAME = 'adhkar-v2';
 const ASSETS = [
     './',
     './index.html',
     './css/style.css',
+    './js/i18n.js',
+    './js/locales-inline.js',
     './js/data.js',
     './js/app.js',
+    './locales/ar.json',
+    './locales/en.json',
+    './locales/so.json',
     './manifest.json',
     './update.json',
     './icons/icon-192.png',

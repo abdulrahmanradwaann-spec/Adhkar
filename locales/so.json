@@ -1,0 +1,380 @@
+{
+  "app": {
+    "name": "Adhkari",
+    "developer": "Cabdiraxmaan Radwan",
+    "version": "3.0",
+    "description": "Adhkari - barnaamij dhammaystiran oo loogu talagalay zikrooyinka maalinlaha ah ee Quraanka kariimka iyo Sunnada saxda ah. Wuxuu ka kooban yahay 700 zikr oo la aamini karo oo laga soo qaatay ilo sax ah, isagoo leh sifooyin horumarsan oo ku saabsan la socodka horumarka iyo xusuusinta.",
+    "metaTitle": "Adhkari - Barnaamijka Zikrooyinka Islaamiga ah ee Dhammaystiran",
+    "metaDescription": "Adhkari - barnaamij dhammaystiran oo loogu talagalay zikrooyinka maalinlaha ah ee Quraanka kariimka iyo Sunnada saxda ah ee Nabiga.",
+    "metaKeywords": "zikr, zikrooyin, zikrooyin subax, zikrooyin galab, barnaamij islaami",
+    "metaOgTitle": "Adhkari - Barnaamijka Zikrooyinka Islaamiga ah ee Dhammaystiran",
+    "metaOgDescription": "Barnaamij dhammaystiran oo loogu talagalay zikrooyinka maalinlaha ah ee Quraanka kariimka iyo Sunnada saxda ah"
+  },
+  "languageScreen": {
+    "title": "Dooro luqaddaada",
+    "subtitle": "Xulo luqadda aad doorbideyso si aad u hesho khibrad fiican",
+    "choose": "Dooro luqad"
+  },
+  "common": {
+    "back": "Ku noqo bogga hore",
+    "joinNow": "Hadda ku biir",
+    "later": "Hadhow",
+    "countZikr": "{count} Zikr",
+    "streak": "Silsilad: {count} maalmood"
+  },
+  "header": {
+    "logoSubtitle": "Zikrooyinka Maalinlaha",
+    "darkMode": "Beddel Qaabka Mugdiga",
+    "fontSize": "Beddel Cabbirka Xarfaha",
+    "settings": "Go'aaminta",
+    "install": "Guri App-ka"
+  },
+  "home": {
+    "bismillah": "بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ",
+    "subtitle": "Barnaamij dhammaystiran oo loogu talagalay zikrooyinka maalinlaha ah ee Quraanka kariimka iyo Sunnada saxda ah",
+    "dailyReminder": "Xusuusinta Zikrooyinka Maalinlaha",
+    "randomZikr": "Zikr Random",
+    "progress": "Horumarkaaga Maalinlaha",
+    "read": "La Akhriyay",
+    "favorites": "Jecel",
+    "streak": "Maalmo Isku Xigxiga",
+    "completion": "Dhammeystir",
+    "searchPlaceholder": "Raadi zikrooyinka...",
+    "followUs": "Noo raac",
+    "sectionsTitle": "Qaybaha Zikrooyinka",
+    "categories": {
+      "all": "Dhamaan",
+      "daily": "Maalinle",
+      "prayer": "Salaad",
+      "home": "Guri",
+      "special": "Gaar ah"
+    },
+    "features": {
+      "favorites": "Jecel",
+      "progress": "Daba-guridda Horumarka",
+      "nightMode": "Qaabka Mugdiga",
+      "search": "Raadin Sare"
+    }
+  },
+  "clock": {
+    "am": "SN",
+    "pm": "GN"
+  },
+  "sections": {
+    "badges": {
+      "daily": "Maalinle",
+      "prayer": "Salaad",
+      "home": "Guri",
+      "special": "Gaar ah"
+    },
+    "browse": "Daalaco zikrooyinka",
+    "emptyCategory": "Ma jiraan qaybo ku jira fasalkan",
+    "morning": {
+      "name": "Zikrooyinka Subaxa",
+      "desc": "Zikrooyinka subaxa ee ka soo foodleeyay Nabiga (CSW) si ilaalin iyo barako"
+    },
+    "evening": {
+      "name": "Zikrooyinka Galabka",
+      "desc": "Zikrooyinka galabka ee ka soo foodleeyay Nabiga (CSW) si ammaan iyo nasasho"
+    },
+    "sleep": {
+      "name": "Zikrooyinka Hurdada",
+      "desc": "Zikrooyinka ka hor hurdada iyo baryada la soo foodleeyay si hurdad xasiloon"
+    },
+    "waking": {
+      "name": "Zikrooyinka Togashada",
+      "desc": "Zikrooyinka togashada hurdada iyo baryada la xoojiyay"
+    },
+    "prayer": {
+      "name": "Zikrooyinka Salaadda Kadib",
+      "desc": "Zikrooyinka iyo baryada kadib salaan ka bixista salaadda"
+    },
+    "mosque": {
+      "name": "Zikrooyinka Masaajidka",
+      "desc": "Zikrooyinka gashida iyo ka bixista masaajidka iyo baryada salaadda"
+    },
+    "home": {
+      "name": "Zikrooyinka Guriga",
+      "desc": "Zikrooyinka gashida iyo ka bixista guriga iyo gashida iyo ka bixista suuliga"
+    },
+    "food": {
+      "name": "Zikrooyinka Cuntada",
+      "desc": "Zikrooyinka cuntada iyo cabitaanka iyo baryada ka hor iyo kadib cunista"
+    },
+    "travel": {
+      "name": "Zikrooyinka Safarka",
+      "desc": "Zikrooyinka safarka iyo baryada gaaditaanka, imaatinka iyo soo noqoshada"
+    },
+    "distress": {
+      "name": "Zikrooyinka Walaaca iyo Murugada",
+      "desc": "Baryada cidhiidhiga, walaaca, murugada iyo imtixaanka"
+    }
+  },
+  "zikr": {
+    "count": "{count} Zikr",
+    "progress": "{count} Zikr | {progress}% dhammaystiran",
+    "filters": {
+      "all": "Dhamaan zikrooyinka",
+      "favorites": "Jecel",
+      "read": "La Akhriyay",
+      "unread": "Aan la Akhriyin",
+      "search": "Raadi"
+    },
+    "searchPlaceholder": "Raadi gudaha {name}...",
+    "repetition": "Ku celis:",
+    "source": "Isha:",
+    "benefits": "Faa'iidooyinka:",
+    "reset": "Dib u habayn",
+    "back": "Ku noqo bogga hore",
+    "markAllRead": "Ku calaamadee dhamaan kuwa la akhriyay",
+    "emptyTitle": "Ma la helin zikrooyin",
+    "emptyHint": "Iska day beddelka sifaynta ama erayada raadinta",
+    "completeTitle": "Mubaarak!",
+    "completeMsg": "Waxaad dhammaystirtay {count} ku celis oo zikr ah",
+    "addToFav": "Ku dar jecelka",
+    "removeFromFav": "Ka saar jecelka",
+    "markRead": "Ku calaamadee sida la akhriyay",
+    "markUnread": "Ku calaamadee sida aan la akhriyin",
+    "share": "Wadaag Zikr",
+    "counter": "Miyaanka Ku Celiska"
+  },
+  "confirm": {
+    "markAllRead": "Ma hubtaa inaad ku calaamadeyso dhamaan zikrooyinka qaybtan sida kuwa la akhriyay?",
+    "resetProgress": "Ma hubtaa inaad dib u dajiso horumarkaaga? Dhamaan zikrooyinka la akhriyay iyo jecelka waa la tirtiri doonaa.",
+    "importData": "Ma hubtaa inaad soo gasho xogta? Xogtaada hadda jirta waa la beddeli doonaa."
+  },
+  "settings": {
+    "title": "Go'aaminta Barnaamijka",
+    "appInfo": "Macluumaadka Barnaamijka",
+    "appName": "Magaca Barnaamijka",
+    "appVersion": "Nooca Barnaamijka",
+    "copyright": "Xuquuqda",
+    "copyrightValue": "© 2026 Cabdiraxmaan Radwan",
+    "zikrCount": "Tirada Zikrooyinka",
+    "zikrCountValue": "700 zikr oo ku kala jira 10 qaybood",
+    "tiktokAccount": "Xisaabtayada TikTok",
+    "followUs": "Noo raac",
+    "customization": "Habaynta",
+    "darkMode": "Qaabka Mugdiga",
+    "fontSize": "Cabbirka Xarfaha",
+    "reminders": "Xusuusinta",
+    "language": "Luqadda",
+    "languageDesc": "Dooro luqadda barnaamijka",
+    "dataManagement": "Maamulka Xogta",
+    "resetProgress": "Dib u dajinta Horumarka",
+    "exportData": "Soo-saarka Xogta",
+    "importData": "Soo-gelinta Xogta",
+    "nightOn": "Firii Qaabka Mugdiga",
+    "dayOn": "Firii Qaabka Maalinta",
+    "changeFontSize": "Beddel Cabbirka Xarfaha",
+    "remindersOn": "Firii Xusuusinta",
+    "remindersOff": "Dami Xusuusinta",
+    "resetBtn": "Dib u daji",
+    "exportBtn": "Soo-saar Xogta",
+    "importBtn": "Soo-geli Xogta"
+  },
+  "developer": {
+    "title": "Hor-dhiga Barnaamijka Adhkari",
+    "desc": "Adhkari waa barnaamij dhammaystiran oo loogu talagalay zikrooyinka maalinlaha ah ee Quraanka kariimka iyo Sunnada saxda ah, oo si taxadar iyo daryeel leh loo horumariyay si loogu soo bandhigo khibrad isticmaale gaar ah oo waxtar leh dadka muslimiinta ah ee adduunka oo dhan.",
+    "zikrCount": "700 Zikr",
+    "sections": "10 Qaybood",
+    "version": "Nooca 3.0",
+    "contact": "La xiriir Hor-dhiga",
+    "share": "Wadaag Barnaamijka",
+    "rate": "Qiimee Barnaamijka",
+    "follow": "Noo raac"
+  },
+  "footer": {
+    "rightsPrefix": "Xuquuqda oo dhan way xifdisan yihiin © 2026 - ",
+    "rightsSuffix": " | Cabdiraxmaan Radwaan",
+    "tagline": "Adhkari | Zikrooyin maalinle ah oo Quraan iyo Sunna ah",
+    "followOn": "Noo raac TikTok",
+    "version": "Nooca 3.0",
+    "privacy": "Qarsoonnida",
+    "terms": "Shuruudaha Isticmaalka",
+    "tiktok": "TikTok",
+    "help": "Caawimo"
+  },
+  "contact": {
+    "title": "La xiriir Hor-dhiga",
+    "name": "Magacaaga",
+    "namePlaceholder": "Gali magacaaga",
+    "email": "Email-kaaga",
+    "emailPlaceholder": "example@email.com",
+    "subject": "Mawduuca",
+    "subjectPlaceholder": "Dooro mawduuca farriinta",
+    "subjects": {
+      "suggestion": "Soo-jeedin hagaajin",
+      "problem": "Dhibaato farsamo",
+      "inquiry": "Weedhin guud",
+      "partnership": "Codsi wada-shaqeyn",
+      "other": "Kale"
+    },
+    "message": "Farriinta",
+    "messagePlaceholder": "Qor farriintaada halkan...",
+    "submit": "Dir Farriinta",
+    "sending": "Waa la dirayaa...",
+    "success": "Farriintaada si guul leh ayaa loo diray! Waanu kuu soo jawaabi doonaa dhawaatan.",
+    "mailtoSubject": "Barnaamijka Adhkari - {subject}",
+    "mailtoBody": "Magaca: {name}\nEmail: {email}\n\n{message}"
+  },
+  "share": {
+    "title": "Wadaag Adhkari",
+    "subtitle": "La wadaag barnaamijka dadka aad jeceshahay si ay u helaan ajir iyo khayr",
+    "whatsapp": "WhatsApp",
+    "tiktok": "TikTok",
+    "twitter": "Twitter",
+    "facebook": "Facebook",
+    "copy": "Nuqul Linkiga",
+    "copied": "Linkiga waa la nuqulay!",
+    "shared": "Waa la wadaagay",
+    "sharedMsg": "Zikr-ka si guul leh ayaa loo wadaagay",
+    "opening": "Waa la furayaa {name}",
+    "text": "{appName} - {description}\n\nHor-dhiga: {developer}\nTikTok: {tiktok}\nNooca: {version}\nLinkiga barnaamijka: {url}"
+  },
+  "install": {
+    "title": "Guri Adhkari",
+    "desc": "Guri barnaamijka qalabkaaga si aad si degdeg ah uga heli karto zikrooyinka adigoon internet lahayn",
+    "install": "Guri",
+    "later": "Hadhow",
+    "done": "Waa la guriyay",
+    "doneMsg": "Barnaamijka Adhkari si guul leh ayaa loo guriyay!",
+    "notAvailable": "Gurida ma awoodo",
+    "notAvailableMsg": "Ikhtiyaarka gurida lama soo bandhigi karo"
+  },
+  "update": {
+    "title": "Cusboonaysiin Cusub ayaa diyaar ah",
+    "releaseDate": "Taariikhda sii-deynta: {date}",
+    "now": "Hadda Cusboonaysii",
+    "later": "Hadhow",
+    "failed": "Cusboonaysiintii waa fashilantay",
+    "failedMsg": "Qalad ayaa ka dhacay cusboonaysiinta. Fadlan mar kale isku day hadhow."
+  },
+  "notifications": {
+    "changed": "Waa la beddelay",
+    "darkModeOn": "Qaabka mugdiga waa la firiiyay",
+    "darkModeOff": "Qaabka mugdiga waa la damiyay",
+    "fontSizeChanged": "Cabbirka xarfaha wuxuu noqday {size}px",
+    "remindersOn": "Xusuusinta waa la firiiyay",
+    "remindersOff": "Xusuusinta waa la damiyay",
+    "reminderMorningTitle": "Xusuusinta Zikrooyinka Subaxa",
+    "reminderEveningTitle": "Xusuusinta Zikrooyinka Galabka",
+    "reminderMorningMsg": "Waqtigii zikrooyinka subaxa ayaa la soo gaadhay. Fur barnaamijka si aad u akhrido.",
+    "reminderEveningMsg": "Waqtigii zikrooyinka galabka ayaa la soo gaadhay. Fur barnaamijka si aad u akhrido.",
+    "tiktokTitle": "Noo raac TikTok!",
+    "tiktokMsg": "Noo raac TikTok si aad u hesho cusboonaysiin maalinle ah oo zikrooyin iyo faa'iidooyin diineed ah.",
+    "welcomeTitle": "Ku soo dhawoow Adhkari",
+    "welcomeMsg": "Barnaamijku wuxuu si guul leh u soo gaxay. Ku raaxayso khibradaada zikrooyinka maalinlaha ah.",
+    "firstTimeTitle": "Soo dhawoow!",
+    "firstTimeMsg": "Taabo qayb kasta si aad u bilowdo akhrinta zikrooyinka.",
+    "added": "Waa la daray",
+    "addedMsg": "Zikr-ka ayaa lagu daray jecelka",
+    "removed": "Waa laga saaray",
+    "removedMsg": "Zikr-ka ayaa laga saaray jecelka",
+    "excellent": "Waan fiican tahay!",
+    "readMsg": "Zikr-ka waxaa loo calaamadeeyay sida la akhriyay",
+    "done": "Guul ayaa laga gaadhay",
+    "allRead": "Dhamaan zikrooyinka ayaa loo calaamadeeyay sida kuwa la akhriyay",
+    "copied": "Waa la nuqulay",
+    "copiedMsg": "Zikr-ka waxaa loo nuqulay xirmada",
+    "exported": "Waa la soo saaray",
+    "exportedMsg": "Xogtaada si guul leh ayaa loo soo saaray",
+    "imported": "Waa la soo geliyay",
+    "importedMsg": "Xogtaada si guul leh ayaa loo soo geliyay",
+    "importError": "Xogta lama soo gelin karin",
+    "invalidFile": "File aan shaqayn",
+    "reset": "Dib-u-dajin oo dhammaystiran",
+    "resetMsg": "Horumarkaaga si guul leh ayaa loo dib u dajiyay",
+    "random": "Zikr Random",
+    "randomMsg": "Zikr ayaa laga xulay qaybta {name}",
+    "thanks": "Mahadsanid!",
+    "thanksMsg": "Waanu ku mahadcelinaynaa ka fikirista qiimaynta barnaamijka.",
+    "online": "Xiriirka waa la soo celiyay",
+    "onlineMsg": "Xiriirka internetka ayaa dib loo soo celiyay",
+    "offline": "Ma jiro xiriir",
+    "offlineMsg": "Barnaamijku wuxuu u shaqeeyaa xiriir la'aan",
+    "shareZikrFooter": "Waxaa laga wadaagay Adhkari - {developer}",
+    "shareSource": "Isha: {reference}",
+    "shareTitle": "Zikr ka yimid Adhkari",
+    "shareTiktok": "TikTok: {url}",
+    "exportFileName": "Xogta_Adhkari_{date}.json",
+    "privacy": "Siyaasadda Qarsoonnida",
+    "privacyMsg": "Waxaanu ixtiraamaynaa qarsoonnidaada mana ururinno wax xog shaqsi ah.",
+    "terms": "Shuruudaha Isticmaalka",
+    "termsMsg": "Barnaamijku waa bilaash oo isticmaalka shaqsi ah.",
+    "help": "Caawimo",
+    "helpMsg": "Si aad caawimo u hesho, nagala xiriir: {email}"
+  },
+  "days": ["Axad", "Isniin", "Talaado", "Arbaco", "Khamiis", "Jimce", "Sabti"],
+  "months": ["Muxarram", "Safar", "Rabic al-Awwal", "Rabic al-Thaani", "Jumad al-Uula", "Jumad al-Akhira", "Rajab", "Shacbaan", "Ramadaan", "Shawwaal", "Dul Qicdah", "Dul Xijjah"],
+  "progressMeta": {
+    "read": "{count} waa la akhriyay",
+    "remaining": "{count} ayaa hadhsan"
+  },
+  "data": {
+    "repetitions": {
+      "once": "Hal mar",
+      "threeTimes": "Saddex jeer",
+      "sevenTimes": "Toddoba jeer",
+      "tenTimes": "Toban jeer",
+      "thirtyThreeTimes": "Soddon iyo saddex jeer",
+      "hundredTimes": "Boqol jeer"
+    },
+    "references": {
+      "bukhari": "Saxiix Bukhaari",
+      "muslim": "Saxiix Muslim",
+      "tirmidhi": "Sunan Tirmidhi",
+      "abuDawud": "Sunan Abuu Daawuud",
+      "nasai": "Sunan Nasaaci",
+      "ibnMajah": "Sunan Ibn Maajah",
+      "malik": "Muwadda Maalik",
+      "ahmad": "Musnad Axmed",
+      "darimi": "Sunan Daarimi",
+      "ibnHibban": "Saxiix Ibn Hibbaan"
+    },
+    "referenceNumbers": {
+      "n1": "Lambar 3391",
+      "n2": "Lambar 2723",
+      "n3": "Lambar 2726",
+      "n4": "Lambar 5068",
+      "n5": "Lambar 5081",
+      "n6": "Lambar 2709",
+      "n7": "Lambar 5088",
+      "n8": "Lambar 3389",
+      "n9": "Lambar 6405",
+      "n10": "Lambar 3474",
+      "n11": "Lambar 925",
+      "n12": "Lambar 3577",
+      "n13": "Lambar 10480",
+      "n14": "Lambar 5090",
+      "n15": "Lambar 1555",
+      "n16": "Lambar 2721",
+      "n17": "Lambar 284",
+      "n18": "Lambar 3410",
+      "n19": "Lambar 3370",
+      "n20": "Lambar 591"
+    },
+    "benefits": {
+      "b1": "Ilaalinta Allaah iyo ka dhowrsanaanta sharrada",
+      "b2": "Barako risqiga iyo shaqada iyo fududaynta arrimaha",
+      "b3": "Degganaansho qalbiga, nasasho nafta iyo xasillooni",
+      "b4": "Ka dhowrsanaanta shaydaanka, shirkadiisa iyo waswaasiyadiisa",
+      "b5": "Ajir weyn, darajo sare iyo dambi dhaaf",
+      "b6": "Dambiyada iyo khaladaadka waa la dhaafaa, xumaanta waa la tirtiraa",
+      "b7": "Kordhin iimaanka, dhawrsanaanta iyo yaqiinta",
+      "b8": "Aqbalaadda ducada, jawabta iyo fulinta baahiyaha",
+      "b9": "Nuur qalbiga, araga, maqalka iyo fahanka",
+      "b10": "Raalli ahaanshaha Allaah iyo guusha helista Jannada iyo ka baxsashada Naarta",
+      "b11": "Xoog jidhka, caafimaad iyo ka fogaanshaha cudurrada",
+      "b12": "Farxad adduunka iyo aakhiraba, liibaan iyo guul",
+      "b13": "Fududaynta dhibaatooyinka iyo ka saarista caqabadaha",
+      "b14": "Xallinta mushkiladaha iyo ka fogaanshaha walbahaarka iyo murugada",
+      "b15": "Barako waqtiga, nolosha, qoyska iyo maalka",
+      "b16": "Jecelka Allaah iyo jecelka Eebe addoonkiisa",
+      "b17": "Ka nabadgelyada imtixaannada, masiibooyinka iyo belooyinka",
+      "b18": "Dhawrsanaan, nadiifnimo iyo karaamo",
+      "b19": "Cilmi waxtar leh iyo faham sax ah",
+      "b20": "Xus joogto ah iyo mahadnaq aan kala go'ayn"
+    }
+  }
+}

@@ -3,24 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>أذكاري - تطبيق الأذكار الإسلامي المتكامل</title>
-    <meta name="description" content="تطبيق أذكاري - تطبيق متكامل للأذكار اليومية من القرآن الكريم والسنة النبوية الموثوقة.">
-    <meta name="keywords" content="أذكار, أذكار يومية, أذكار الصباح, أذكار المساء, تطبيق إسلامي">
+    <title data-i18n="app.metaTitle">أذكاري - تطبيق الأذكار الإسلامي المتكامل</title>
+    <meta name="description" data-i18n="app.metaDescription" content="تطبيق أذكاري - تطبيق متكامل للأذكار اليومية من القرآن الكريم والسنة النبوية الموثوقة.">
+    <meta name="keywords" data-i18n="app.metaKeywords" content="أذكار, أذكار يومية, أذكار الصباح, أذكار المساء, تطبيق إسلامي">
     <meta name="author" content="عبدالرحمن رضوان">
-    <meta property="og:title" content="أذكاري - تطبيق الأذكار الإسلامي المتكامل">
-    <meta property="og:description" content="تطبيق متكامل للأذكار اليومية من القرآن الكريم والسنة النبوية الموثوقة">
+    <meta property="og:title" data-i18n="app.metaOgTitle" content="أذكاري - تطبيق الأذكار الإسلامي المتكامل">
+    <meta property="og:description" data-i18n="app.metaOgDescription" content="تطبيق متكامل للأذكار اليومية من القرآن الكريم والسنة النبوية الموثوقة">
     <meta property="og:type" content="website">
+
+    <script>
+        (function () {
+            /* Apply the saved language direction before anything renders,
+               so there is no RTL/LTR flash and no white screen on load. */
+            try {
+                var lang = localStorage.getItem('appLanguage');
+                var dirs = { ar: 'rtl', en: 'ltr', so: 'ltr' };
+                var el = document.documentElement;
+                if (lang && dirs[lang]) {
+                    el.setAttribute('lang', lang);
+                    el.setAttribute('dir', dirs[lang]);
+                } else {
+                    el.setAttribute('lang', 'ar');
+                    el.setAttribute('dir', 'rtl');
+                }
+            } catch (e) { /* storage may be blocked */ }
+        })();
+    </script>
 
     <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
     <link rel="apple-touch-icon" href="icons/icon-192.png">
     <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png">
     <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.png">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="css/style.css">
 
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#1a5f7a">
+    <meta name="theme-color" content="#1B4332">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="أذكاري">
@@ -39,6 +61,21 @@
         <div class="arabic-calligraphy calligraphy-3">سبحان الله</div>
     </div>
 
+    <!-- ===== FIRST-RUN LANGUAGE SELECTION ===== -->
+    <div class="language-screen" id="languageScreen">
+        <div class="language-screen-card">
+            <div class="language-screen-logo">
+                <div class="logo-icon-wrap">
+                    <div class="logo-glow"></div>
+                    <i class="fas fa-book-quran logo-icon"></i>
+                </div>
+            </div>
+            <h2 class="language-screen-title" id="languageScreenTitle"></h2>
+            <p class="language-screen-subtitle" id="languageScreenSubtitle"></p>
+            <div class="language-options" id="languageOptions"></div>
+        </div>
+    </div>
+
     <div class="app-container">
 
         <!-- ===== HEADER ===== -->
@@ -50,24 +87,23 @@
                 </div>
                 <div class="logo-info">
                     <h1 class="logo-text">أذكاري</h1>
-                    <span class="logo-subtitle">الأذكار اليومية</span>
+                    <span class="logo-subtitle" data-i18n="header.logoSubtitle">الأذكار اليومية</span>
                 </div>
             </div>
             <div class="header-controls">
-                <span id="hijriDate" class="ml-3"></span>
-                <button class="control-btn tooltip" id="themeToggle" title="تبديل الوضع الليلي">
+                <button class="control-btn tooltip" id="themeToggle" data-i18n-title="header.darkMode" data-i18n-tooltip="header.darkMode" title="تبديل الوضع الليلي">
                     <i class="fas fa-moon"></i>
                     <span class="tooltip-text">تبديل الوضع الليلي</span>
                 </button>
-                <button class="control-btn tooltip" id="fontSizeToggle" title="تغيير حجم الخط">
+                <button class="control-btn tooltip" id="fontSizeToggle" data-i18n-title="header.fontSize" data-i18n-tooltip="header.fontSize" title="تغيير حجم الخط">
                     <i class="fas fa-text-height"></i>
                     <span class="tooltip-text">تغيير حجم الخط</span>
                 </button>
-                <button class="control-btn tooltip" id="settingsToggle" title="الإعدادات">
+                <button class="control-btn tooltip" id="settingsToggle" data-i18n-title="header.settings" data-i18n-tooltip="header.settings" title="الإعدادات">
                     <i class="fas fa-cog"></i>
                     <span class="tooltip-text">الإعدادات</span>
                 </button>
-                <button class="control-btn tooltip" id="installBtn" title="تثبيت التطبيق" style="display:none;">
+                <button class="control-btn tooltip" id="installBtn" data-i18n-title="header.install" data-i18n-tooltip="header.install" title="تثبيت التطبيق" style="display:none;">
                     <i class="fas fa-download"></i>
                     <span class="tooltip-text">تثبيت التطبيق</span>
                 </button>
@@ -89,8 +125,8 @@
                     </div>
                     <div class="hero-content">
 
-                        <h2 class="hero-title">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</h2>
-                        <p class="hero-subtitle">تطبيق متكامل للأذكار اليومية من القرآن الكريم والسنة النبوية الموثوقة</p>
+                        <h2 class="hero-title" data-i18n="home.bismillah">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</h2>
+                        <p class="hero-subtitle" data-i18n="home.subtitle">تطبيق متكامل للأذكار اليومية من القرآن الكريم والسنة النبوية الموثوقة</p>
                         <div class="hero-clock-section">
                             <div class="clock-display">
                                 <div class="clock-time" id="clockTime">00:00</div>
@@ -108,10 +144,10 @@
                         </div>
                         <div class="hero-actions">
                             <button class="hero-btn hero-btn-primary" id="dailyReminderBtn">
-                                <i class="fas fa-bell"></i> تذكير الأذكار اليومية
+                                <i class="fas fa-bell"></i> <span data-i18n="home.dailyReminder">تذكير الأذكار اليومية</span>
                             </button>
                             <button class="hero-btn hero-btn-secondary" id="randomZikrBtn">
-                                <i class="fas fa-dice"></i> ذكر عشوائي
+                                <i class="fas fa-dice"></i> <span data-i18n="home.randomZikr">ذكر عشوائي</span>
                             </button>
                         </div>
                     </div>
@@ -123,7 +159,7 @@
                         <!-- شريط التقدم -->
                         <div class="dashboard-progress">
                             <div class="progress-label-row">
-                                <span class="progress-label"><i class="fas fa-chart-line"></i> تقدمك اليومي</span>
+                                <span class="progress-label"><i class="fas fa-chart-line"></i> <span data-i18n="home.progress">تقدمك اليومي</span></span>
                                 <span class="progress-percent" id="progressPercent">0%</span>
                             </div>
                             <div class="progress-bar-track">
@@ -136,28 +172,28 @@
                                 <div class="dash-stat-icon dash-stat-read"><i class="fas fa-check-circle"></i></div>
                                 <div class="dash-stat-info">
                                     <span class="dash-stat-val" id="totalReadStat">0</span>
-                                    <span class="dash-stat-lbl">مقروء</span>
+                                    <span class="dash-stat-lbl" data-i18n="home.read">مقروء</span>
                                 </div>
                             </div>
                             <div class="dash-stat">
                                 <div class="dash-stat-icon dash-stat-fav"><i class="fas fa-heart"></i></div>
                                 <div class="dash-stat-info">
                                     <span class="dash-stat-val" id="favoritesStat">0</span>
-                                    <span class="dash-stat-lbl">مفضلة</span>
+                                    <span class="dash-stat-lbl" data-i18n="home.favorites">مفضلة</span>
                                 </div>
                             </div>
                             <div class="dash-stat">
                                 <div class="dash-stat-icon dash-stat-streak"><i class="fas fa-fire"></i></div>
                                 <div class="dash-stat-info">
                                     <span class="dash-stat-val" id="streakStat">0</span>
-                                    <span class="dash-stat-lbl">أيام متتالية</span>
+                                    <span class="dash-stat-lbl" data-i18n="home.streak">أيام متتالية</span>
                                 </div>
                             </div>
                             <div class="dash-stat">
                                 <div class="dash-stat-icon dash-stat-complete"><i class="fas fa-trophy"></i></div>
                                 <div class="dash-stat-info">
                                     <span class="dash-stat-val" id="completionStat">0%</span>
-                                    <span class="dash-stat-lbl">إنجاز</span>
+                                    <span class="dash-stat-lbl" data-i18n="home.completion">إنجاز</span>
                                 </div>
                             </div>
                         </div>
@@ -168,11 +204,11 @@
                 <div class="action-row">
                     <div class="search-box-new">
                         <i class="fas fa-search search-icon-new"></i>
-                        <input type="text" id="searchInput" class="search-input-new" placeholder="ابحث في الأذكار...">
+                        <input type="text" id="searchInput" class="search-input-new" data-i18n-placeholder="home.searchPlaceholder" placeholder="ابحث في الأذكار...">
                     </div>
                     <a href="https://www.tiktok.com/@io99c" target="_blank" class="tiktok-pill">
                         <svg class="tiktok-icon" viewBox="0 0 48 48" width="22" height="22"><path d="M41.3 20.7c-3.4 0-6.3-2-7.7-4.9V28a11.2 11.2 0 1 1-9.6-11.1v5.8a5.4 5.4 0 1 0 3.4 5V5h5.5a7.6 7.6 0 0 0 5.5 5.5A7.6 7.6 0 0 0 43.9 11V12a7.6 7.6 0 0 0-4.5 1.5 7.6 7.6 0 0 0 1.9 12.2" fill="white"/><path d="M33.6 15.8V28a7.6 7.6 0 1 1-5.5-7.3v5.5a2.2 2.2 0 1 0 1.8 2.2V11.5h3.7a3.8 3.8 0 0 0 3 3.5 3.8 3.8 0 0 0 2.3-1.2" fill="white" opacity="0.7"/></svg>
-                        <span>تابعنا</span>
+                        <span data-i18n="home.followUs">تابعنا</span>
                     </a>
                 </div>
 
@@ -181,17 +217,17 @@
                     <div class="sections-header">
                         <h2 class="sections-title">
                             <span class="sections-title-icon"><i class="fas fa-th-large"></i></span>
-                            أقسام الأذكار
+                            <span data-i18n="home.sectionsTitle">أقسام الأذكار</span>
                         </h2>
 
                     </div>
 
                     <div class="sections-categories" id="sectionsCategories">
-                        <button class="category-tab active" data-category="all"><i class="fas fa-th-large"></i> الكل</button>
-                        <button class="category-tab" data-category="daily"><i class="fas fa-sun"></i> يومية</button>
-                        <button class="category-tab" data-category="prayer"><i class="fas fa-pray"></i> صلاة</button>
-                        <button class="category-tab" data-category="home"><i class="fas fa-home"></i> منزل</button>
-                        <button class="category-tab" data-category="special"><i class="fas fa-star"></i> خاصة</button>
+                        <button class="category-tab active" data-category="all"><i class="fas fa-th-large"></i> <span data-i18n="home.categories.all">الكل</span></button>
+                        <button class="category-tab" data-category="daily"><i class="fas fa-sun"></i> <span data-i18n="home.categories.daily">يومية</span></button>
+                        <button class="category-tab" data-category="prayer"><i class="fas fa-pray"></i> <span data-i18n="home.categories.prayer">صلاة</span></button>
+                        <button class="category-tab" data-category="home"><i class="fas fa-home"></i> <span data-i18n="home.categories.home">منزل</span></button>
+                        <button class="category-tab" data-category="special"><i class="fas fa-star"></i> <span data-i18n="home.categories.special">خاصة</span></button>
                     </div>
 
                     <div class="sections-grid" id="sectionsGrid"></div>
@@ -202,19 +238,19 @@
                     <div class="features-compact-grid">
                         <div class="feature-pill">
                             <div class="feature-pill-icon"><i class="fas fa-heart"></i></div>
-                            <span class="feature-pill-text">المفضلة</span>
+                            <span class="feature-pill-text" data-i18n="home.features.favorites">المفضلة</span>
                         </div>
                         <div class="feature-pill">
                             <div class="feature-pill-icon"><i class="fas fa-chart-bar"></i></div>
-                            <span class="feature-pill-text">تتبع التقدم</span>
+                            <span class="feature-pill-text" data-i18n="home.features.progress">تتبع التقدم</span>
                         </div>
                         <div class="feature-pill">
                             <div class="feature-pill-icon"><i class="fas fa-moon"></i></div>
-                            <span class="feature-pill-text">الوضع الليلي</span>
+                            <span class="feature-pill-text" data-i18n="home.features.nightMode">الوضع الليلي</span>
                         </div>
                         <div class="feature-pill">
                             <div class="feature-pill-icon"><i class="fas fa-search"></i></div>
-                            <span class="feature-pill-text">بحث متقدم</span>
+                            <span class="feature-pill-text" data-i18n="home.features.search">بحث متقدم</span>
                         </div>
                     </div>
                 </div>
@@ -226,50 +262,50 @@
             <!-- صفحة الإعدادات -->
             <div id="settingsPage" class="page">
                 <div class="settings-card slide-in-right">
-                    <h2 class="settings-title"><i class="fas fa-cog"></i> إعدادات التطبيق</h2>
+                    <h2 class="settings-title"><i class="fas fa-cog"></i> <span data-i18n="settings.title">إعدادات التطبيق</span></h2>
 
                     <div class="settings-group">
-                        <h4 class="settings-group-title"><i class="fas fa-info-circle"></i> معلومات التطبيق</h4>
+                        <h4 class="settings-group-title"><i class="fas fa-info-circle"></i> <span data-i18n="settings.appInfo">معلومات التطبيق</span></h4>
                         <div class="settings-item">
-                            <div class="settings-label"><i class="fas fa-font"></i><span>اسم التطبيق</span></div>
-                            <div class="settings-value">أذكاري</div>
+                            <div class="settings-label"><i class="fas fa-font"></i><span data-i18n="settings.appName">اسم التطبيق</span></div>
+                            <div class="settings-value" data-i18n="app.name">أذكاري</div>
                         </div>
                         <div class="settings-item">
-                            <div class="settings-label"><i class="fas fa-code-branch"></i><span>إصدار التطبيق</span></div>
-                            <div class="settings-value">3.0</div>
+                            <div class="settings-label"><i class="fas fa-code-branch"></i><span data-i18n="settings.appVersion">إصدار التطبيق</span></div>
+                            <div class="settings-value" data-i18n="app.version">3.0</div>
                         </div>
                         <div class="settings-item">
-                            <div class="settings-label"><i class="fas fa-copyright"></i><span>حقوق الملكية</span></div>
-                            <div class="settings-value">© 2026 عبدالرحمن رضوان</div>
+                            <div class="settings-label"><i class="fas fa-copyright"></i><span data-i18n="settings.copyright">حقوق الملكية</span></div>
+                            <div class="settings-value" data-i18n="settings.copyrightValue">© 2026 عبدالرحمن رضوان</div>
                         </div>
                         <div class="settings-item">
-                            <div class="settings-label"><i class="fas fa-book"></i><span>عدد الأذكار</span></div>
-                            <div class="settings-value">700 ذكر في 10 أقسام</div>
+                            <div class="settings-label"><i class="fas fa-book"></i><span data-i18n="settings.zikrCount">عدد الأذكار</span></div>
+                            <div class="settings-value" data-i18n="settings.zikrCountValue">700 ذكر في 10 أقسام</div>
                         </div>
                         <div class="settings-item">
-                            <div class="settings-label"><i class="fab fa-tiktok"></i><span>حسابنا على تيك توك</span></div>
+                            <div class="settings-label"><i class="fab fa-tiktok"></i><span data-i18n="settings.tiktokAccount">حسابنا على تيك توك</span></div>
                             <div class="settings-value">
-                                <button class="settings-btn" id="joinTelegramBtn"><i class="fab fa-tiktok"></i> تابعنا</button>
+                                <button class="settings-btn" id="joinTelegramBtn"><i class="fab fa-tiktok"></i> <span data-i18n="settings.followUs">تابعنا</span></button>
                             </div>
                         </div>
                     </div>
 
                     <div class="settings-group">
-                        <h4 class="settings-group-title"><i class="fas fa-palette"></i> التخصيص</h4>
+                        <h4 class="settings-group-title"><i class="fas fa-palette"></i> <span data-i18n="settings.customization">التخصيص</span></h4>
                         <div class="settings-item">
-                            <div class="settings-label"><i class="fas fa-moon"></i><span>الوضع الليلي</span></div>
+                            <div class="settings-label"><i class="fas fa-moon"></i><span data-i18n="settings.darkMode">الوضع الليلي</span></div>
                             <div class="settings-value">
                                 <button class="settings-btn" id="toggleDarkModeBtn"><i class="fas fa-moon"></i> تفعيل الوضع الليلي</button>
                             </div>
                         </div>
                         <div class="settings-item">
-                            <div class="settings-label"><i class="fas fa-text-height"></i><span>حجم الخط</span></div>
+                            <div class="settings-label"><i class="fas fa-text-height"></i><span data-i18n="settings.fontSize">حجم الخط</span></div>
                             <div class="settings-value">
-                                <button class="settings-btn" id="changeFontSizeBtn"><i class="fas fa-text-height"></i> تغيير حجم الخط</button>
+                                <button class="settings-btn" id="changeFontSizeBtn"><i class="fas fa-text-height"></i> <span data-i18n="settings.changeFontSize">تغيير حجم الخط</span></button>
                             </div>
                         </div>
                         <div class="settings-item">
-                            <div class="settings-label"><i class="fas fa-bell"></i><span>التذكيرات</span></div>
+                            <div class="settings-label"><i class="fas fa-bell"></i><span data-i18n="settings.reminders">التذكيرات</span></div>
                             <div class="settings-value">
                                 <button class="settings-btn secondary" id="toggleNotificationsBtn"><i class="fas fa-bell"></i> تفعيل التذكيرات</button>
                             </div>
@@ -277,23 +313,31 @@
                     </div>
 
                     <div class="settings-group">
-                        <h4 class="settings-group-title"><i class="fas fa-database"></i> إدارة البيانات</h4>
+                        <h4 class="settings-group-title"><i class="fas fa-globe"></i> <span data-i18n="settings.language">اللغة</span></h4>
                         <div class="settings-item">
-                            <div class="settings-label"><i class="fas fa-redo"></i><span>إعادة تعيين التقدم</span></div>
+                            <div class="settings-label"><i class="fas fa-language"></i><span data-i18n="settings.languageDesc">اختر لغة التطبيق</span></div>
+                        </div>
+                        <div class="settings-lang-list" id="settingsLanguageList"></div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h4 class="settings-group-title"><i class="fas fa-database"></i> <span data-i18n="settings.dataManagement">إدارة البيانات</span></h4>
+                        <div class="settings-item">
+                            <div class="settings-label"><i class="fas fa-redo"></i><span data-i18n="settings.resetProgress">إعادة تعيين التقدم</span></div>
                             <div class="settings-value">
-                                <button class="settings-btn accent" id="resetProgressBtn"><i class="fas fa-redo"></i> إعادة تعيين</button>
+                                <button class="settings-btn accent" id="resetProgressBtn"><i class="fas fa-redo"></i> <span data-i18n="settings.resetBtn">إعادة تعيين</span></button>
                             </div>
                         </div>
                         <div class="settings-item">
-                            <div class="settings-label"><i class="fas fa-cloud-download-alt"></i><span>تصدير البيانات</span></div>
+                            <div class="settings-label"><i class="fas fa-cloud-download-alt"></i><span data-i18n="settings.exportData">تصدير البيانات</span></div>
                             <div class="settings-value">
-                                <button class="settings-btn" id="exportDataBtn"><i class="fas fa-download"></i> تصدير البيانات</button>
+                                <button class="settings-btn" id="exportDataBtn"><i class="fas fa-download"></i> <span data-i18n="settings.exportBtn">تصدير البيانات</span></button>
                             </div>
                         </div>
                         <div class="settings-item">
-                            <div class="settings-label"><i class="fas fa-cloud-upload-alt"></i><span>استيراد البيانات</span></div>
+                            <div class="settings-label"><i class="fas fa-cloud-upload-alt"></i><span data-i18n="settings.importData">استيراد البيانات</span></div>
                             <div class="settings-value">
-                                <button class="settings-btn secondary" id="importDataBtn"><i class="fas fa-upload"></i> استيراد البيانات</button>
+                                <button class="settings-btn secondary" id="importDataBtn"><i class="fas fa-upload"></i> <span data-i18n="settings.importBtn">استيراد البيانات</span></button>
                             </div>
                         </div>
                     </div>
@@ -308,36 +352,36 @@
                                 <div class="developer-avatar-ring"></div>
                             </div>
                             <h3 class="developer-name">عبدالرحمن رضوان</h3>
-                            <p class="developer-title">مطور تطبيق أذكاري</p>
+                            <p class="developer-title" data-i18n="developer.title">مطور تطبيق أذكاري</p>
                         </div>
                         <div class="developer-bio">
-                            <p class="developer-desc">تطبيق أذكاري هو تطبيق متكامل للأذكار اليومية من القرآن الكريم والسنة النبوية الموثوقة، تم تطويره بدقة وعناية لتقديم تجربة مستخدم فريدة ومفيدة للمسلمين حول العالم.</p>
+                            <p class="developer-desc" data-i18n="developer.desc">تطبيق أذكاري هو تطبيق متكامل للأذكار اليومية من القرآن الكريم والسنة النبوية الموثوقة، تم تطويره بدقة وعناية لتقديم تجربة مستخدم فريدة ومفيدة للمسلمين حول العالم.</p>
                         </div>
                         <div class="developer-stats">
                             <div class="developer-stat-item">
                                 <i class="fas fa-book"></i>
-                                <span>700 ذكر</span>
+                                <span data-i18n="developer.zikrCount">700 ذكر</span>
                             </div>
                             <div class="developer-stat-item">
                                 <i class="fas fa-folder"></i>
-                                <span>10 أقسام</span>
+                                <span data-i18n="developer.sections">10 أقسام</span>
                             </div>
                             <div class="developer-stat-item">
                                 <i class="fas fa-code-branch"></i>
-                                <span>الإصدار 3.0</span>
+                                <span data-i18n="developer.version">الإصدار 3.0</span>
                             </div>
                         </div>
                         <div class="contact-info">
-                            <button class="contact-btn" id="contactDeveloperBtn"><i class="fas fa-envelope"></i> تواصل مع المطور</button>
-                            <button class="contact-btn" id="shareAppBtn"><i class="fas fa-share-alt"></i> مشاركة التطبيق</button>
-                            <button class="contact-btn" id="rateAppBtn"><i class="fas fa-star"></i> تقييم التطبيق</button>
-                            <a href="https://www.tiktok.com/@io99c" target="_blank" class="contact-btn"><i class="fab fa-tiktok"></i> تابعنا</a>
+                            <button class="contact-btn" id="contactDeveloperBtn"><i class="fas fa-envelope"></i> <span data-i18n="developer.contact">تواصل مع المطور</span></button>
+                            <button class="contact-btn" id="shareAppBtn"><i class="fas fa-share-alt"></i> <span data-i18n="developer.share">مشاركة التطبيق</span></button>
+                            <button class="contact-btn" id="rateAppBtn"><i class="fas fa-star"></i> <span data-i18n="developer.rate">تقييم التطبيق</span></button>
+                            <a href="https://www.tiktok.com/@io99c" target="_blank" class="contact-btn"><i class="fab fa-tiktok"></i> <span data-i18n="developer.follow">تابعنا</span></a>
                         </div>
                     </div>
                 </div>
 
                 <div class="navigation">
-                    <button class="nav-btn back-btn" id="backToHomeFromSettingsBtn"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button>
+                    <button class="nav-btn back-btn" id="backToHomeFromSettingsBtn"><i class="fas fa-arrow-right"></i> <span data-i18n="common.back">العودة للرئيسية</span></button>
                 </div>
             </div>
         </main>
@@ -346,19 +390,19 @@
         <footer class="footer">
             <div class="footer-content">
                 <div class="copyright">
-                    <p>جميع الحقوق محفوظة &copy; 2026 - <span id="currentYear"></span> | عبدالرحمن رضوان</p>
-                    <p class="mt-10">تطبيق أذكاري | الأذكار اليومية من القرآن والسنة</p>
-                    <p class="mt-10">تابعنا على <a href="https://www.tiktok.com/@io99c" target="_blank" style="color:#2d9cdb;text-decoration:none;">تيك توك</a></p>
+                    <p><span data-i18n="footer.rightsPrefix">جميع الحقوق محفوظة © 2026 - </span><span id="currentYear"></span><span data-i18n="footer.rightsSuffix"> | عبدالرحمن رضوان</span></p>
+                    <p class="mt-10" data-i18n="footer.tagline">تطبيق أذكاري | الأذكار اليومية من القرآن والسنة</p>
+                    <p class="mt-10" data-i18n="footer.followOn">تابعنا على تيك توك</p>
                 </div>
                 <div class="app-version">
                     <i class="fas fa-code"></i>
-                    <span>الإصدار 3.0</span>
+                    <span data-i18n="footer.version">الإصدار 3.0</span>
                 </div>
                 <div class="footer-links">
-                    <a href="#" class="footer-link" id="privacyLink"><i class="fas fa-shield-alt"></i> خصوصية</a>
-                    <a href="#" class="footer-link" id="termsLink"><i class="fas fa-file-contract"></i> شروط الاستخدام</a>
-                    <a href="https://www.tiktok.com/@io99c" target="_blank" class="footer-link"><i class="fab fa-tiktok"></i> تيك توك</a>
-                    <a href="#" class="footer-link" id="helpLink"><i class="fas fa-question-circle"></i> المساعدة</a>
+                    <a href="#" class="footer-link" id="privacyLink"><i class="fas fa-shield-alt"></i> <span data-i18n="footer.privacy">خصوصية</span></a>
+                    <a href="#" class="footer-link" id="termsLink"><i class="fas fa-file-contract"></i> <span data-i18n="footer.terms">شروط الاستخدام</span></a>
+                    <a href="https://www.tiktok.com/@io99c" target="_blank" class="footer-link"><i class="fab fa-tiktok"></i> <span data-i18n="footer.tiktok">تيك توك</span></a>
+                    <a href="#" class="footer-link" id="helpLink"><i class="fas fa-question-circle"></i> <span data-i18n="footer.help">المساعدة</span></a>
                 </div>
             </div>
         </footer>
@@ -369,32 +413,32 @@
         <div class="contact-modal" id="contactModal">
             <div class="contact-modal-content">
                 <button class="contact-modal-close" id="contactModalClose"><i class="fas fa-times"></i></button>
-                <h3 class="contact-form-title"><i class="fas fa-envelope"></i> تواصل مع المطور</h3>
+                <h3 class="contact-form-title"><i class="fas fa-envelope"></i> <span data-i18n="contact.title">تواصل مع المطور</span></h3>
                 <form class="contact-form" id="contactForm">
                     <div class="form-group">
-                        <label class="form-label">اسمك</label>
-                        <input type="text" class="form-input" id="contactName" placeholder="أدخل اسمك" required>
+                        <label class="form-label" data-i18n="contact.name">اسمك</label>
+                        <input type="text" class="form-input" id="contactName" placeholder="أدخل اسمك" data-i18n-placeholder="contact.namePlaceholder" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">بريدك الإلكتروني</label>
-                        <input type="email" class="form-input" id="contactEmail" placeholder="example@email.com" required>
+                        <label class="form-label" data-i18n="contact.email">بريدك الإلكتروني</label>
+                        <input type="email" class="form-input" id="contactEmail" placeholder="example@email.com" data-i18n-placeholder="contact.emailPlaceholder" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">الموضوع</label>
+                        <label class="form-label" data-i18n="contact.subject">الموضوع</label>
                         <select class="form-input" id="contactSubject" required>
-                            <option value="">اختر موضوع الرسالة</option>
-                            <option value="اقتراح">اقتراح تحسين</option>
-                            <option value="مشكلة">مشكلة فنية</option>
-                            <option value="استفسار">استفسار عام</option>
-                            <option value="تعاون">طلب تعاون</option>
-                            <option value="أخرى">أخرى</option>
+                            <option value="" data-i18n="contact.subjectPlaceholder">اختر موضوع الرسالة</option>
+                            <option value="suggestion" data-i18n="contact.subjects.suggestion">اقتراح تحسين</option>
+                            <option value="problem" data-i18n="contact.subjects.problem">مشكلة فنية</option>
+                            <option value="inquiry" data-i18n="contact.subjects.inquiry">استفسار عام</option>
+                            <option value="partnership" data-i18n="contact.subjects.partnership">طلب تعاون</option>
+                            <option value="other" data-i18n="contact.subjects.other">أخرى</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">الرسالة</label>
-                        <textarea class="form-textarea" id="contactMessage" placeholder="اكتب رسالتك هنا..." required></textarea>
+                        <label class="form-label" data-i18n="contact.message">الرسالة</label>
+                        <textarea class="form-textarea" id="contactMessage" placeholder="اكتب رسالتك هنا..." data-i18n-placeholder="contact.messagePlaceholder" required></textarea>
                     </div>
-                    <button type="submit" class="form-submit" id="contactSubmit"><i class="fas fa-paper-plane"></i> إرسال الرسالة</button>
+                    <button type="submit" class="form-submit" id="contactSubmit"><i class="fas fa-paper-plane"></i> <span data-i18n="contact.submit">إرسال الرسالة</span></button>
                     <div class="form-message" id="contactMessageDiv"></div>
                 </form>
             </div>
@@ -404,17 +448,17 @@
         <div class="share-modal" id="shareModal">
             <div class="share-modal-content">
                 <button class="contact-modal-close" id="shareModalClose"><i class="fas fa-times"></i></button>
-                <h3 class="contact-form-title"><i class="fas fa-share-alt"></i> مشاركة تطبيق أذكاري</h3>
-                <p style="color:var(--text-light);margin-bottom:20px;text-align:center;">شارك التطبيق مع أحبابك لينالوا الأجر والثواب</p>
+                <h3 class="contact-form-title"><i class="fas fa-share-alt"></i> <span data-i18n="share.title">مشاركة تطبيق أذكاري</span></h3>
+                <p style="color:var(--text-light);margin-bottom:20px;text-align:center;" data-i18n="share.subtitle">شارك التطبيق مع أحبابك لينالوا الأجر والثواب</p>
                 <div class="share-options">
-                    <div class="share-option" id="shareWhatsApp"><i class="fab fa-whatsapp"></i><span class="share-name">واتساب</span></div>
-                    <div class="share-option" id="shareTelegram"><i class="fab fa-tiktok"></i><span class="share-name">تيك توك</span></div>
-                    <div class="share-option" id="shareTwitter"><i class="fab fa-twitter"></i><span class="share-name">تويتر</span></div>
-                    <div class="share-option" id="shareFacebook"><i class="fab fa-facebook"></i><span class="share-name">فيسبوك</span></div>
+                    <div class="share-option" id="shareWhatsApp"><i class="fab fa-whatsapp"></i><span class="share-name" data-i18n="share.whatsapp">واتساب</span></div>
+                    <div class="share-option" id="shareTelegram"><i class="fab fa-tiktok"></i><span class="share-name" data-i18n="share.tiktok">تيك توك</span></div>
+                    <div class="share-option" id="shareTwitter"><i class="fab fa-twitter"></i><span class="share-name" data-i18n="share.twitter">تويتر</span></div>
+                    <div class="share-option" id="shareFacebook"><i class="fab fa-facebook"></i><span class="share-name" data-i18n="share.facebook">فيسبوك</span></div>
                 </div>
                 <div class="share-link">
                     <input type="text" class="share-link-input" id="shareLinkInput" readonly>
-                    <button class="share-link-copy" id="shareLinkCopy"><i class="fas fa-copy"></i> نسخ الرابط</button>
+                    <button class="share-link-copy" id="shareLinkCopy"><i class="fas fa-copy"></i> <span data-i18n="share.copy">نسخ الرابط</span></button>
                 </div>
                 <div class="form-message" id="shareMessageDiv"></div>
             </div>
@@ -423,12 +467,12 @@
         <!-- إشعار التثبيت -->
         <div class="install-prompt" id="installPrompt">
             <div class="install-content">
-                <div class="install-title">تثبيت تطبيق أذكاري</div>
-                <div class="install-desc">ثبّت التطبيق على جهازك للوصول السريع للأذكار بدون إنترنت</div>
+                <div class="install-title"><span data-i18n="install.title">تثبيت تطبيق أذكاري</span></div>
+                <div class="install-desc" data-i18n="install.desc">ثبّت التطبيق على جهازك للوصول السريع للأذكار بدون إنترنت</div>
             </div>
             <div class="install-buttons">
-                <button class="install-btn" id="installPromptBtn"><i class="fas fa-download"></i> تثبيت</button>
-                <button class="install-btn" id="installLaterBtn">لاحقاً</button>
+                <button class="install-btn" id="installPromptBtn"><i class="fas fa-download"></i> <span data-i18n="install.install">تثبيت</span></button>
+                <button class="install-btn" id="installLaterBtn"><span data-i18n="install.later">لاحقاً</span></button>
             </div>
             <button class="install-close" id="installCloseBtn"><i class="fas fa-times"></i></button>
         </div>
@@ -441,7 +485,7 @@
                         <div class="update-icon-pulse"></div>
                         <div class="update-icon"><i class="fas fa-arrow-up"></i></div>
                     </div>
-                    <h2 class="update-title">تحديث جديد متوفر</h2>
+                    <h2 class="update-title" data-i18n="update.title">تحديث جديد متوفر</h2>
                     <div class="update-versions">
                         <span class="update-ver-new" id="updateVerNew">v0.0.0</span>
                         <i class="fas fa-arrow-left update-arrow"></i>
@@ -460,8 +504,8 @@
                         <span class="update-progress-text" id="updateProgressText">0%</span>
                     </div>
                     <div id="updateButtons" class="update-buttons">
-                        <button class="update-btn update-btn-primary" id="updateNowBtn"><i class="fas fa-download"></i> تحديث الآن</button>
-                        <button class="update-btn update-btn-secondary" id="updateLaterBtn">لاحقاً</button>
+                        <button class="update-btn update-btn-primary" id="updateNowBtn"><i class="fas fa-download"></i> <span data-i18n="update.now">تحديث الآن</span></button>
+                        <button class="update-btn update-btn-secondary" id="updateLaterBtn"><span data-i18n="update.later">لاحقاً</span></button>
                     </div>
                 </div>
             </div>
@@ -475,6 +519,8 @@
     </div>
 
     <!-- ===== SCRIPTS ===== -->
+    <script src="js/i18n.js"></script>
+    <script src="js/locales-inline.js"></script>
     <script src="js/data.js"></script>
     <script src="js/app.js"></script>
 
@@ -494,14 +540,16 @@
             border-color: var(--dark) transparent transparent transparent;
         }
         .tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
-        .ml-3 { margin-left: 15px; }
+        .ml-3 { margin-inline-start: 15px; }
         .notification-action {
-            background: var(--secondary); color: white; border: none;
+            background: linear-gradient(135deg, #e6c457, var(--secondary) 55%, #b8912c);
+            color: #1a1a1a; border: none;
             padding: 5px 15px; border-radius: 20px; cursor: pointer;
             font-weight: 700; font-size: 13px; margin-top: 8px;
             font-family: var(--font-body); transition: var(--transition-fast);
+            box-shadow: 0 3px 10px rgba(212,175,55,0.3);
         }
-        .notification-action:hover { background: #4abf87; transform: translateY(-1px); }
+        .notification-action:hover { background: linear-gradient(135deg, #f0d47a, #dbb43e 55%, #c89f30); transform: translateY(-1px); }
     </style>
     <script>
         if ('serviceWorker' in navigator) {

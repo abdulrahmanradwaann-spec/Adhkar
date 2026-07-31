@@ -1,10 +1,21 @@
 {
-  "latestVersion": "3.0",
+  "latestVersion": "3.1",
   "minVersion": "2.5",
   "updateUrl": "https://github.com/user/Adhkar-main/releases/latest",
-  "releaseDate": "2026-07-17",
+  "releaseDate": "2026-07-31",
   "mandatory": false,
   "changelog": [
+    {
+      "version": "3.1",
+      "date": "2026-07-31",
+      "type": "major",
+      "changes": [
+        "دعم الترجمة الكاملة للعربية والإنجليزية والصومالية",
+        "تغيير اللغة فوراً بدون إعادة تحميل",
+        "شاشة اختيار اللغة عند أول تشغيل",
+        "دعم الاتجاه RTL/LTR والخطوط لكل لغة"
+      ]
+    },
     {
       "version": "3.0",
       "date": "2026-07-17",

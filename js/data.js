@@ -1,34 +1,36 @@
 // ===== APPLICATION CONSTANTS =====
-const APP_NAME = "أذكاري";
+// Display strings are resolved through the i18n system at render time.
+const APP_NAME_KEY = "app.name";
+const DEVELOPER_KEY = "app.developer";
+const APP_DESCRIPTION_KEY = "app.description";
 const APP_VERSION = "3.0.0";
 const UPDATE_JSON_URL = "./update.json";
-const DEVELOPER = "عبدالرحمن رضوان";
 const DEVELOPER_EMAIL = "icodeium@gmail.com";
 const TIKTOK_URL = "https://www.tiktok.com/@io99c";
 const COPYRIGHT_YEAR = "2026";
 const APP_URL = window.location.href;
-const APP_DESCRIPTION = "تطبيق أذكاري - تطبيق متكامل للأذكار اليومية من القرآن الكريم والسنة النبوية الموثوقة. يحتوي على 700 ذكر موثوق من مصادر صحيحة مع مميزات متقدمة لتتبع التقدم والإشعارات.";
 
 // ===== APPLICATION CONFIGURATION =====
+// nameKey / descriptionKey point into the locale dictionaries.
 const appConfig = {
-    appName: APP_NAME,
+    appNameKey: APP_NAME_KEY,
     version: APP_VERSION,
-    developer: DEVELOPER,
+    developerKey: DEVELOPER_KEY,
     email: DEVELOPER_EMAIL,
     tiktokUrl: TIKTOK_URL,
     copyrightYear: COPYRIGHT_YEAR,
     totalZikr: 700,
     sections: [
-        { id: "morning", name: "أذكار الصباح", icon: "fas fa-sun", color: "#FF9800", count: 70, category: "daily", priority: 1, description: "أذكار الصباح المأثورة عن النبي صلى الله عليه وسلم للحماية والبركة" },
-        { id: "evening", name: "أذكار المساء", icon: "fas fa-moon", color: "#2196F3", count: 70, category: "daily", priority: 2, description: "أذكار المساء المأثورة عن النبي صلى الله عليه وسلم للأمان والراحة" },
-        { id: "sleep", name: "أذكار النوم", icon: "fas fa-bed", color: "#673AB7", count: 70, category: "daily", priority: 3, description: "أذكار ما قبل النوم والأدعية المأثورة للنوم الهادئ" },
-        { id: "waking", name: "أذكار الاستيقاظ", icon: "fas fa-bell", color: "#FF5722", count: 70, category: "daily", priority: 4, description: "أذكار الاستيقاظ من النوم والأدعية المشروعة" },
-        { id: "prayer", name: "أذكار بعد الصلاة", icon: "fas fa-pray", color: "#4CAF50", count: 70, category: "prayer", priority: 5, description: "أذكار وأدعية بعد السلام من الصلاة" },
-        { id: "mosque", name: "أذكار المسجد", icon: "fas fa-mosque", color: "#009688", count: 70, category: "prayer", priority: 6, description: "أذكار دخول المسجد والخروج منه وأدعية الصلاة" },
-        { id: "home", name: "أذكار المنزل", icon: "fas fa-home", color: "#795548", count: 70, category: "home", priority: 7, description: "أذكار دخول المنزل والخروج منه والدخول والخروج من الخلاء" },
-        { id: "food", name: "أذكار الطعام", icon: "fas fa-utensils", color: "#E91E63", count: 70, category: "home", priority: 8, description: "أذكار الطعام والشراب والدعاء قبل الأكل وبعده" },
-        { id: "travel", name: "أذكار السفر", icon: "fas fa-plane", color: "#3F51B5", count: 70, category: "special", priority: 9, description: "أذكار السفر وأدعية الركوب والوصول والعودة" },
-        { id: "distress", name: "أذكار الهم والحزن", icon: "fas fa-heart", color: "#F44336", count: 70, category: "special", priority: 10, description: "أدعية الكرب والهم والحزن والابتلاء" }
+        { id: "morning", nameKey: "sections.morning.name", icon: "fas fa-sun", color: "#FF9800", count: 70, category: "daily", priority: 1, descriptionKey: "sections.morning.desc" },
+        { id: "evening", nameKey: "sections.evening.name", icon: "fas fa-moon", color: "#2196F3", count: 70, category: "daily", priority: 2, descriptionKey: "sections.evening.desc" },
+        { id: "sleep", nameKey: "sections.sleep.name", icon: "fas fa-bed", color: "#673AB7", count: 70, category: "daily", priority: 3, descriptionKey: "sections.sleep.desc" },
+        { id: "waking", nameKey: "sections.waking.name", icon: "fas fa-bell", color: "#FF5722", count: 70, category: "daily", priority: 4, descriptionKey: "sections.waking.desc" },
+        { id: "prayer", nameKey: "sections.prayer.name", icon: "fas fa-pray", color: "#4CAF50", count: 70, category: "prayer", priority: 5, descriptionKey: "sections.prayer.desc" },
+        { id: "mosque", nameKey: "sections.mosque.name", icon: "fas fa-mosque", color: "#009688", count: 70, category: "prayer", priority: 6, descriptionKey: "sections.mosque.desc" },
+        { id: "home", nameKey: "sections.home.name", icon: "fas fa-home", color: "#795548", count: 70, category: "home", priority: 7, descriptionKey: "sections.home.desc" },
+        { id: "food", nameKey: "sections.food.name", icon: "fas fa-utensils", color: "#E91E63", count: 70, category: "home", priority: 8, descriptionKey: "sections.food.desc" },
+        { id: "travel", nameKey: "sections.travel.name", icon: "fas fa-plane", color: "#3F51B5", count: 70, category: "special", priority: 9, descriptionKey: "sections.travel.desc" },
+        { id: "distress", nameKey: "sections.distress.name", icon: "fas fa-heart", color: "#F44336", count: 70, category: "special", priority: 10, descriptionKey: "sections.distress.desc" }
     ]
 };
 
@@ -256,48 +258,52 @@ const adhkarLists = {
     ]
 };
 
-const repetitions = [
-    "مرة واحدة", "ثلاث مرات", "سبع مرات", "عشر مرات",
-    "ثلاث وثلاثين مرة", "مائة مرة"
+const repetitionKeys = [
+    "data.repetitions.once", "data.repetitions.threeTimes", "data.repetitions.sevenTimes",
+    "data.repetitions.tenTimes", "data.repetitions.thirtyThreeTimes", "data.repetitions.hundredTimes"
 ];
 
-const references = [
-    "صحيح البخاري", "صحيح مسلم", "سنن الترمذي", "سنن أبي داود",
-    "سنن النسائي", "سنن ابن ماجه", "موطأ مالك", "مسند أحمد",
-    "سُنن الدارمي", "صحيح ابن حبان"
+// Numeric repetition counts keyed by the same locale keys. Localized strings
+// must never be parsed for numbers (translations like "Three times" contain no
+// digits), so the counter completion relies on these values instead.
+const repetitionCounts = {
+    "data.repetitions.once": 1,
+    "data.repetitions.threeTimes": 3,
+    "data.repetitions.sevenTimes": 7,
+    "data.repetitions.tenTimes": 10,
+    "data.repetitions.thirtyThreeTimes": 33,
+    "data.repetitions.hundredTimes": 100
+};
+
+const referenceKeys = [
+    "data.references.bukhari", "data.references.muslim", "data.references.tirmidhi",
+    "data.references.abuDawud", "data.references.nasai", "data.references.ibnMajah",
+    "data.references.malik", "data.references.ahmad", "data.references.darimi",
+    "data.references.ibnHibban"
 ];
 
-const referenceNumbers = [
-    "رقم 3391", "رقم 2723", "رقم 2726", "رقم 5068", "رقم 5081",
-    "رقم 2709", "رقم 5088", "رقم 3389", "رقم 6405", "رقم 3474",
-    "رقم 925", "رقم 3577", "رقم 10480", "رقم 5090", "رقم 1555",
-    "رقم 2721", "رقم 284", "رقم 3410", "رقم 3370", "رقم 591"
+const referenceNumberKeys = [
+    "data.referenceNumbers.n1", "data.referenceNumbers.n2", "data.referenceNumbers.n3",
+    "data.referenceNumbers.n4", "data.referenceNumbers.n5", "data.referenceNumbers.n6",
+    "data.referenceNumbers.n7", "data.referenceNumbers.n8", "data.referenceNumbers.n9",
+    "data.referenceNumbers.n10", "data.referenceNumbers.n11", "data.referenceNumbers.n12",
+    "data.referenceNumbers.n13", "data.referenceNumbers.n14", "data.referenceNumbers.n15",
+    "data.referenceNumbers.n16", "data.referenceNumbers.n17", "data.referenceNumbers.n18",
+    "data.referenceNumbers.n19", "data.referenceNumbers.n20"
 ];
 
-const benefits = [
-    "حفظ من الله تعالى ووقاية من الشرور",
-    "بركة في الرزق والعمل وتيسير الأمور",
-    "طمأنينة للقلب وراحة للنفس وسكينة",
-    "حماية من الشيطان وشركه ووساوسه",
-    "أجر عظيم ورفعة في الدرجات ومغفرة للذنوب",
-    "غفران الذنوب والخطايا وتكفير السيئات",
-    "زيادة في الإيمان والتقوى واليقين",
-    "قبول الدعاء واستجابة وتحقيق المطالب",
-    "نور في القلب والبصر والسمع والبصيرة",
-    "رضا الله تعالى والفوز بالجنة والنجاة من النار",
-    "قوة في البدن وصحة وعافية من الأمراض",
-    "سعادة في الدنيا والآخرة وفلاح وفوز",
-    "تيسير الصعاب وتذليل العقبات",
-    "حل المشاكل وزوال الهموم والغموم",
-    "بركة في الوقت والعمر والأهل والمال",
-    "حب الله تعالى ومحبته لعبده",
-    "النجاة من الفتن والمحن والبلاء",
-    "الستر والعفاف والعفة والحياء",
-    "العلم النافع والفهم الصحيح",
-    "الذكر الدائم والشكر المستمر"
+const benefitKeys = [
+    "data.benefits.b1", "data.benefits.b2", "data.benefits.b3", "data.benefits.b4",
+    "data.benefits.b5", "data.benefits.b6", "data.benefits.b7", "data.benefits.b8",
+    "data.benefits.b9", "data.benefits.b10", "data.benefits.b11", "data.benefits.b12",
+    "data.benefits.b13", "data.benefits.b14", "data.benefits.b15", "data.benefits.b16",
+    "data.benefits.b17", "data.benefits.b18", "data.benefits.b19", "data.benefits.b20"
 ];
 
 // ===== BUILD ADHKAR DATABASE =====
+// The dhikr text itself is sacred content and intentionally remains in its
+// original Arabic (this is the industry standard for Islamic apps). All
+// surrounding metadata (repetition, source, benefits) is fully localized.
 function buildAdhkarDatabase() {
     const db = {};
     const sections = Object.keys(adhkarLists);
@@ -312,10 +318,11 @@ function buildAdhkarDatabase() {
             db[sectionId].push({
                 id: i + 1,
                 text: list[i % list.length],
-                repetition: repetitions[i % repetitions.length],
-                reference: references[(i + secIndex) % references.length],
-                reference_number: referenceNumbers[(i + secIndex) % referenceNumbers.length],
-                benefits: benefits[(i + secIndex) % benefits.length]
+                repetitionKey: repetitionKeys[i % repetitionKeys.length],
+                repetitionCount: repetitionCounts[repetitionKeys[i % repetitionKeys.length]] || 0,
+                referenceKey: referenceKeys[(i + secIndex) % referenceKeys.length],
+                referenceNumberKey: referenceNumberKeys[(i + secIndex) % referenceNumberKeys.length],
+                benefitsKey: benefitKeys[(i + secIndex) % benefitKeys.length]
             });
         }
     });
@@ -331,5 +338,5 @@ const adhkarDatabase = buildAdhkarDatabase();
     for (const section in adhkarDatabase) {
         if (adhkarDatabase[section]) total += adhkarDatabase[section].length;
     }
-    console.log(`✅ تطبيق ${APP_NAME}: ${total} ذكر في ${Object.keys(adhkarDatabase).length} أقسام`);
+    console.log(`Adhkari app: ${total} adhkar in ${Object.keys(adhkarDatabase).length} sections`);
 })();
