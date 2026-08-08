@@ -242,14 +242,6 @@
     "notAvailable": "التثبيت غير متاح",
     "notAvailableMsg": "تعذر عرض خيار التثبيت"
   },
-  "update": {
-    "title": "تحديث جديد متوفر",
-    "releaseDate": "تاريخ الإصدار: {date}",
-    "now": "تحديث الآن",
-    "later": "لاحقاً",
-    "failed": "فشل التحديث",
-    "failedMsg": "حدث خطأ أثناء التحديث. يرجى المحاولة لاحقاً."
-  },
   "notifications": {
     "changed": "تم التغيير",
     "darkModeOn": "تم تفعيل الوضع الليلي",

@@ -242,14 +242,6 @@
     "notAvailable": "Gurida ma awoodo",
     "notAvailableMsg": "Ikhtiyaarka gurida lama soo bandhigi karo"
   },
-  "update": {
-    "title": "Cusboonaysiin Cusub ayaa diyaar ah",
-    "releaseDate": "Taariikhda sii-deynta: {date}",
-    "now": "Hadda Cusboonaysii",
-    "later": "Hadhow",
-    "failed": "Cusboonaysiintii waa fashilantay",
-    "failedMsg": "Qalad ayaa ka dhacay cusboonaysiinta. Fadlan mar kale isku day hadhow."
-  },
   "notifications": {
     "changed": "Waa la beddelay",
     "darkModeOn": "Qaabka mugdiga waa la firiiyay",

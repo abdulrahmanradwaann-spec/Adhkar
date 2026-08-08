@@ -245,14 +245,6 @@ const INLINE_LOCALES = {
     "notAvailable": "التثبيت غير متاح",
     "notAvailableMsg": "تعذر عرض خيار التثبيت"
   },
-  "update": {
-    "title": "تحديث جديد متوفر",
-    "releaseDate": "تاريخ الإصدار: {date}",
-    "now": "تحديث الآن",
-    "later": "لاحقاً",
-    "failed": "فشل التحديث",
-    "failedMsg": "حدث خطأ أثناء التحديث. يرجى المحاولة لاحقاً."
-  },
   "notifications": {
     "changed": "تم التغيير",
     "darkModeOn": "تم تفعيل الوضع الليلي",
@@ -626,14 +618,6 @@ const INLINE_LOCALES = {
     "notAvailable": "Install Not Available",
     "notAvailableMsg": "The install option could not be displayed"
   },
-  "update": {
-    "title": "A New Update Is Available",
-    "releaseDate": "Release date: {date}",
-    "now": "Update Now",
-    "later": "Later",
-    "failed": "Update Failed",
-    "failedMsg": "An error occurred while updating. Please try again later."
-  },
   "notifications": {
     "changed": "Changed",
     "darkModeOn": "Dark mode has been enabled",
@@ -1006,14 +990,6 @@ const INLINE_LOCALES = {
     "doneMsg": "Barnaamijka Adhkari si guul leh ayaa loo guriyay!",
     "notAvailable": "Gurida ma awoodo",
     "notAvailableMsg": "Ikhtiyaarka gurida lama soo bandhigi karo"
-  },
-  "update": {
-    "title": "Cusboonaysiin Cusub ayaa diyaar ah",
-    "releaseDate": "Taariikhda sii-deynta: {date}",
-    "now": "Hadda Cusboonaysii",
-    "later": "Hadhow",
-    "failed": "Cusboonaysiintii waa fashilantay",
-    "failedMsg": "Qalad ayaa ka dhacay cusboonaysiinta. Fadlan mar kale isku day hadhow."
   },
   "notifications": {
     "changed": "Waa la beddelay",

@@ -242,14 +242,6 @@
     "notAvailable": "Install Not Available",
     "notAvailableMsg": "The install option could not be displayed"
   },
-  "update": {
-    "title": "A New Update Is Available",
-    "releaseDate": "Release date: {date}",
-    "now": "Update Now",
-    "later": "Later",
-    "failed": "Update Failed",
-    "failedMsg": "An error occurred while updating. Please try again later."
-  },
   "notifications": {
     "changed": "Changed",
     "darkModeOn": "Dark mode has been enabled",

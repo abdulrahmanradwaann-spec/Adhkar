@@ -11,7 +11,6 @@ const ASSETS = [
     './locales/en.json',
     './locales/so.json',
     './manifest.json',
-    './update.json',
     './icons/icon-192.png',
     './icons/icon-512.png',
     './images/developer.jpg',
@@ -32,27 +31,6 @@ self.addEventListener('activate', e => {
             Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
         ).then(() => self.clients.claim())
     );
-});
-
-// Handle update messages from the client
-self.addEventListener('message', e => {
-    if (e.data && e.data.type === 'APPLY_UPDATE') {
-        const files = e.data.files;
-        caches.open(CACHE_NAME).then(cache => {
-            for (const [path, content] of Object.entries(files)) {
-                const url = path === 'index.html' ? './' + path : './' + path;
-                const response = new Response(content, {
-                    headers: { 'Content-Type': 'text/plain; charset=utf-8' }
-                });
-                cache.put(url, response);
-            }
-        }).then(() => {
-            // Notify all clients that update is applied
-            self.clients.matchAll().then(clients => {
-                clients.forEach(client => client.postMessage({ type: 'UPDATE_APPLIED' }));
-            });
-        });
-    }
 });
 
 self.addEventListener('fetch', e => {

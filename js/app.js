@@ -73,19 +73,6 @@ const installLaterBtn = $('installLaterBtn');
 const installCloseBtn = $('installCloseBtn');
 const settingsLanguageList = $('settingsLanguageList');
 
-// ===== UPDATE SYSTEM REFS =====
-const updateOverlay = $('updateOverlay');
-const updateVerNew = $('updateVerNew');
-const updateVerOld = $('updateVerOld');
-const updateDate = $('updateDate');
-const updateChanges = $('updateChanges');
-const updateProgressWrap = $('updateProgressWrap');
-const updateProgressFill = $('updateProgressFill');
-const updateProgressText = $('updateProgressText');
-const updateButtons = $('updateButtons');
-const updateNowBtn = $('updateNowBtn');
-const updateLaterBtn = $('updateLaterBtn');
-
 // ===== NEW HOME PAGE REFS =====
 const hijriDateText = $('hijriDateText');
 
@@ -559,6 +546,14 @@ function getCurrentFilter() {
     return active ? active.dataset.filter : 'all';
 }
 
+/** Return the dhikr text in the currently-selected language. */
+function localizedZikrText(item) {
+    const lang = I18N.current();
+    if (lang === 'en') return item.en || item.text;
+    if (lang === 'so') return item.so || item.text;
+    return item.text;
+}
+
 // ===== GENERATE ZIKR ITEMS =====
 /** Render the dhikr list for a section, applying filter and search. */
 function generateZikrItems(sectionId, filter = 'all') {
@@ -577,6 +572,7 @@ function generateZikrItems(sectionId, filter = 'all') {
         if (searchTerm) {
             const term = searchTerm.toLowerCase();
             items = items.filter(i =>
+                localizedZikrText(i).toLowerCase().includes(term) ||
                 i.text.toLowerCase().includes(term) ||
                 t(i.referenceKey).toLowerCase().includes(term) ||
                 t(i.benefitsKey).toLowerCase().includes(term)
@@ -600,7 +596,7 @@ function generateZikrItems(sectionId, filter = 'all') {
                         <button class="action-btn counter-btn" title="${t('zikr.counter')}"><i class="fas fa-redo"></i></button>
                     </div>
                 </div>
-                <div class="zikr-text">${item.text}</div>
+                <div class="zikr-text">${localizedZikrText(item)}</div>
                 <div class="zikr-details">
                     <div class="detail-row"><span class="detail-label"><i class="fas fa-redo"></i> ${t('zikr.repetition')}</span><span class="detail-value">${t(item.repetitionKey)}</span></div>
                     <div class="detail-row"><span class="detail-label"><i class="fas fa-book"></i> ${t('zikr.source')}</span><span class="detail-value">${t(item.referenceKey)} ${t(item.referenceNumberKey)}</span></div>
@@ -623,7 +619,7 @@ function generateZikrItems(sectionId, filter = 'all') {
 
             favBtn?.addEventListener('click', () => toggleFavorite(zikrId, favBtn));
             readBtn?.addEventListener('click', () => toggleRead(zikrId, readBtn));
-            shareBtn?.addEventListener('click', () => shareZikr(item.text, item.referenceKey));
+            shareBtn?.addEventListener('click', () => shareZikr(localizedZikrText(item), item.referenceKey));
             counterBtn?.addEventListener('click', () => counterCont.classList.toggle('hidden'));
             incBtn?.addEventListener('click', () => {
                 let c = parseInt(counterDisp.textContent) + 1;
@@ -961,165 +957,6 @@ function copyShareLink() {
     });
 }
 
-// ===== VERSION CONTROL SYSTEM =====
-function parseVersion(v) {
-    const parts = String(v).replace(/[^0-9.]/g, '').split('.').map(Number);
-    return { major: parts[0] || 0, minor: parts[1] || 0, patch: parts[2] || 0 };
-}
-function compareVersions(a, b) {
-    const va = parseVersion(a), vb = parseVersion(b);
-    if (va.major !== vb.major) return va.major - vb.major;
-    if (va.minor !== vb.minor) return va.minor - vb.minor;
-    return va.patch - vb.patch;
-}
-
-// ===== UPDATE SYSTEM =====
-async function checkForUpdates() {
-    const lastDismissed = localStorage.getItem('updateDismissed');
-    const dismissedVersion = localStorage.getItem('updateDismissedVersion');
-    if (dismissedVersion === APP_VERSION) {
-        // same version dismissed before, skip
-    }
-    try {
-        const bust = '?t=' + Date.now();
-        const resp = await fetch(UPDATE_JSON_URL + bust);
-        if (!resp.ok) return;
-        const data = await resp.json();
-        if (!data.latestVersion) return;
-        const hasUpdate = compareVersions(data.latestVersion, APP_VERSION) > 0;
-        if (!hasUpdate) return;
-        if (dismissedVersion === data.latestVersion && lastDismissed) {
-            const hoursSince = (Date.now() - parseInt(lastDismissed)) / 3600000;
-            if (hoursSince < 24) return; // re-show after 24h
-        }
-        showUpdateDialog(data);
-    } catch (e) {
-        // silently fail — no internet or bad JSON
-    }
-}
-
-function showUpdateDialog(data) {
-    if (!updateOverlay) return;
-    const latest = data.changelog && data.changelog[0];
-    const ver = latest ? latest.version : data.latestVersion;
-    const date = latest ? latest.date : data.releaseDate;
-    const changes = latest ? latest.changes : [];
-
-    updateVerNew.textContent = 'v' + ver;
-    updateVerOld.textContent = 'v' + APP_VERSION;
-    if (date) {
-        const d = new Date(date);
-        let formatted;
-        try {
-            formatted = d.toLocaleDateString(I18N.locale(), { year: 'numeric', month: 'long', day: 'numeric' });
-        } catch {
-            formatted = d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-        }
-        updateDate.textContent = t('update.releaseDate', { date: formatted });
-    }
-
-    let html = '';
-    const icons = ['fa-sparkles', 'fa-bolt', 'fa-bug', 'fa-wand-magic-sparkles', 'fa-star'];
-    changes.forEach((c, i) => {
-        const icon = icons[i % icons.length];
-        html += `<div class="update-change-item"><i class="fas ${icon} update-change-icon"></i><span>${c}</span></div>`;
-    });
-    updateChanges.innerHTML = html;
-
-    updateProgressWrap.classList.add('hidden');
-    updateButtons.classList.remove('hidden');
-    updateProgressFill.style.width = '0%';
-    updateProgressText.textContent = '0%';
-
-    updateOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeUpdateDialog(userAction) {
-    if (updateOverlay) updateOverlay.classList.remove('active');
-    document.body.style.overflow = 'auto';
-    if (userAction === 'later') {
-        const verText = updateVerNew ? updateVerNew.textContent.replace('v', '') : '';
-        localStorage.setItem('updateDismissedVersion', verText);
-        localStorage.setItem('updateDismissed', Date.now());
-    }
-}
-
-async function performUpdate() {
-    if (!updateProgressWrap || !updateProgressFill || !updateProgressText || !updateButtons) return;
-    updateButtons.classList.add('hidden');
-    updateProgressWrap.classList.remove('hidden');
-
-    const files = ['index.html', 'css/style.css', 'js/data.js', 'js/app.js', 'js/i18n.js', 'js/locales-inline.js', 'sw.js', 'manifest.json', 'update.json', 'locales/ar.json', 'locales/en.json', 'locales/so.json'];
-    const total = files.length;
-    let done = 0;
-    const errors = [];
-
-    try {
-        for (const file of files) {
-            try {
-                updateProgressText.textContent = `${Math.round((done / total) * 100)}%`;
-                updateProgressFill.style.width = `${(done / total) * 100}%`;
-
-                const bust = file.includes('?') ? '&t=' + Date.now() : '?t=' + Date.now();
-                const resp = await fetch('./' + file + bust);
-                if (!resp.ok) throw new Error('HTTP ' + resp.status);
-                const text = await resp.text();
-
-                localStorage.setItem('_pending_' + file, text);
-
-                done++;
-                updateProgressText.textContent = `${Math.round((done / total) * 100)}%`;
-                updateProgressFill.style.width = `${(done / total) * 100}%`;
-            } catch (err) {
-                errors.push(file);
-                done++;
-            }
-        }
-
-        const newVer = updateVerNew ? updateVerNew.textContent.replace('v', '') : '';
-        localStorage.setItem('installedVersion', newVer);
-        localStorage.setItem('updatePending', 'true');
-        localStorage.setItem('updateTimestamp', Date.now());
-
-        updateProgressFill.style.width = '100%';
-        updateProgressText.textContent = '100%';
-
-        await new Promise(r => setTimeout(r, 500));
-
-        if ('caches' in window) {
-            const keys = await caches.keys();
-            for (const k of keys) await caches.delete(k);
-        }
-
-        if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-            const filesToCache = {};
-            for (const file of files) {
-                const content = localStorage.getItem('_pending_' + file);
-                if (content) filesToCache[file] = content;
-            }
-            navigator.serviceWorker.controller.postMessage({
-                type: 'APPLY_UPDATE',
-                files: filesToCache
-            });
-        }
-
-        files.forEach(f => localStorage.removeItem('_pending_' + f));
-        localStorage.removeItem('updatePending');
-
-        setTimeout(() => location.reload(), 800);
-
-    } catch (e) {
-        files.forEach(f => localStorage.removeItem('_pending_' + f));
-        localStorage.removeItem('updatePending');
-        localStorage.removeItem('installedVersion');
-        updateProgressWrap.classList.add('hidden');
-        updateButtons.classList.remove('hidden');
-        updateProgressFill.style.width = '0%';
-        showNotification(t('update.failed'), t('update.failedMsg'), 'error');
-    }
-}
-
 // ===== PWA =====
 function setupPWAInstall() {
     if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) return;
@@ -1228,10 +1065,6 @@ function setupEnhancedEventListeners() {
     installLaterBtn?.addEventListener('click', () => { localStorage.setItem('installPromptDismissed', Date.now()); hideInstallPrompt(); });
     installCloseBtn?.addEventListener('click', () => { localStorage.setItem('installPromptDismissed', 'permanent'); hideInstallPrompt(); });
 
-    updateNowBtn?.addEventListener('click', performUpdate);
-    updateLaterBtn?.addEventListener('click', () => closeUpdateDialog('later'));
-    updateOverlay?.addEventListener('click', e => { if (e.target === updateOverlay) closeUpdateDialog('later'); });
-
     document.addEventListener('keydown', e => {
         if (e.ctrlKey || e.metaKey) {
             const actions = {
@@ -1246,7 +1079,6 @@ function setupEnhancedEventListeners() {
             if (action) { e.preventDefault(); action(); }
         }
         if (e.key === 'Escape') {
-            if (updateOverlay?.classList.contains('active')) closeUpdateDialog('later');
             if (contactModal?.classList.contains('active')) closeContactModal();
             if (shareModal?.classList.contains('active')) closeShareModal();
         }
@@ -1283,7 +1115,6 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 initApp();
                 hideLoading();
-                checkForUpdates();
                 if (!localStorage.getItem('firstTime')) {
                     setTimeout(() => {
                         showNotification(t('notifications.firstTimeTitle'), t('notifications.firstTimeMsg'), 'info');
